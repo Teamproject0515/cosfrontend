@@ -1,13 +1,16 @@
-import Main from './Maincomponent/Main';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import AppRouter from './component/route/RouterComponent';
+import Banner from "./Maincomponent/Banner";
+import Footer from "./Maincomponent/Footer";
+
+
 function App() {
   return (
     <div className="App">
       <Router>
-        <Main/>
-        <Switch>
-          <Route path="/"/>
-        </Switch>
+        <Banner/>
+        <AppRouter/>
+        <Footer/>
       </Router>
     </div>
   );

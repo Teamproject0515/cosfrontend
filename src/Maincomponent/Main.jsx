@@ -5,12 +5,10 @@ import { Button } from '@material-ui/core';
 import "./css/Main.css"
 import Mainmid from "./Mainmid";
 import Bottombig from "./Bottombig";
-import Footer from "./Footer";
 function Main(){
 
     return(
         <div>
-            <Banner/>
             <Topbig/>
             <div style={{paddingTop:"20px"}}>
                 <h1>Most popular</h1>
@@ -20,7 +18,6 @@ function Main(){
             </div>
             <Mainmid/>
             <Bottombig/>
-            <Footer/>
         </div>
     );
 }
