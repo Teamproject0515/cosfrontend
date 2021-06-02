@@ -1,5 +1,5 @@
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
-import AppRouter from './component/route/RouterComponent';
+import AppRouter from './ProductListcomponent/route/RouterComponent';
 import Banner from "./Maincomponent/Banner";
 import Footer from "./Maincomponent/Footer";
 
