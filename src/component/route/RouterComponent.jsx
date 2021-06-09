@@ -18,6 +18,12 @@ const AppRouter = () => {
                         <Route path="/product-list" component={ProductComponent} />
                         <Route path="/product-detail" component={ProductDetailComponent} />
                         <Route path="/demo" component={Demo} />
+
+ 	{/* 로그인 및 아이디 비밀번호 찾기 */}
+                        <Route path="/login" component={LoginTextComponent}/>
+                        <Route path="/findEmail" component={FindIDComponent} />
+                        <Route path="/findPW" component={FindPWComponent} />
+                        <Route path="/Email" component={ShowEmail}/>
                     </Switch>
             </BrowserRouter>
         </div>
