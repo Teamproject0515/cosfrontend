@@ -13,7 +13,15 @@ const USER_API_BASE_URL =  "http://localhost:8080/cos";
 
     findPW(user){
         return axios.post(USER_API_BASE_URL+'/findPW',user);
-    }  
+    } 
+    
+    checkSession(){
+
+    }
+
+    lotout(){
+        return axios.get()
+    }
 
 }
 
