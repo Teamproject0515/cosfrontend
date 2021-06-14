@@ -13,7 +13,7 @@ function FindIdFooter(){
     return (
         <Footer>     
             <Button onClick={() => {history.push("/findEmail")}}>아이디 찾기</Button>&nbsp;&nbsp;
-            <Button onClick={() => {history.push("/login")}}>로그인 하기</Button>      
+            <Button onClick={() => {history.push("/signIn")}}>로그인 하기</Button>      
             </Footer> 
     )
 }

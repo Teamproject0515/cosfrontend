@@ -2,6 +2,7 @@ import {Table, TableRow, TableCell} from '@material-ui/core'
 import {useHistory, useLocation} from "react-router-dom";
 import Footer from "./FindPwFooter";
 import styled from "styled-components";
+import React,{ useEffect} from 'react';
 
 const Div = styled.div`
 width: 350px;
@@ -16,7 +17,15 @@ function ShowPassword(props) {
     let user_name = sessionStorage.getItem("user_name");
     let user_birthday = sessionStorage.getItem("user_birthday");
     let user_email = sessionStorage.getItem("user_email");
-    let user_password = sessionStorage.getItem("user_password")
+    let user_password = sessionStorage.getItem("user_password");
+
+    useEffect(()=>{
+        console.log('비밀번호 찾음 페이지');
+        return ()=>{
+            sessionStorage.clear();
+            console.log('sessionStorage clear()');
+        };
+    },[]);
     
     return (
         <Div>

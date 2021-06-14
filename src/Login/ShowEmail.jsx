@@ -1,7 +1,8 @@
 import { TextField , Button, Link, IconButton} from '@material-ui/core'
-import {useHistory, useLocation} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Footer from "./FindIdFooter";
 import styled from "styled-components";
+import React,{ useEffect} from 'react';
 
 function ShowEmail() {
     const history = useHistory(); 
@@ -9,6 +10,14 @@ function ShowEmail() {
     let user_name = sessionStorage.getItem("user_name");
     let user_birthday = sessionStorage.getItem("user_birthday");
     let user_email = sessionStorage.getItem("user_email");
+
+    useEffect(()=>{
+        console.log('이메일 찾음 페이지');
+        return ()=>{
+            sessionStorage.clear();
+            console.log('sessionStorage clear()');
+        };
+    },[]);
 
     const Div = styled.div`
     width: 350px;

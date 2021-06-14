@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from 'clsx';
 import {Link, useHistory} from "react-router-dom";
-
+import cookie from 'react-cookies';
 import {IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
@@ -15,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import Logo from "./images/logo.jpg";
 import {SidebarData} from "./SidebarData"
 import "./css/Banner.css"
-
+import ApiService from '../Login/ApiServiceLogin';
 
 function Banner(){
 
@@ -47,6 +47,42 @@ function Banner(){
         window.location.reload(); // 메인페이지를 제외하고 다른 페이지를 클릭했을 때, 주소값만 변하고 새로고침이 되지 않아서 reload시킴 - 다른 방법이 있을 것 같음
     }
 
+    //로그인 버튼 / 로그아웃 버튼 설정
+    const [loginBtn, setLoginBtn] = useState('login');
+
+    //쿠키 값으로 session 확인 후 Boolean 값 받아서 버튼 이름 변경
+    useEffect(() => {    
+            console.log((String)(cookie.load("JSESSIONID")));
+            ApiService.checkSession()
+            .then(res=> {
+                let loginButton = res.data;
+                console.log(loginButton);
+                setLoginBtn(     
+                    loginButton =="true" ? 'logout' : 'login'
+                );
+                })
+            .catch(err=>{
+            console.log('checkSession 에러',err);
+            });
+      },[] );
+    
+    //loginBtn 값에 따라서 보여지는 페이지 지정
+    const loginBtnHandler = ()=>{
+        if(loginBtn == "login"){
+        history.push('/login');
+    }else if (loginBtn == "logout"){
+        ApiService.lotout()
+        .then(res=> {
+            cookie.remove('user_email');
+            window.alert("로그아웃이 완료 되었습니다.");
+            history.push('/');
+        })
+        .catch( err=> {
+            console.log('lotout() 에러', err);
+        });
+    }
+}
+
     return(
         <>
             <div className="banner" style={{width:'100%'}}>
@@ -67,9 +103,6 @@ function Banner(){
                                 </React.Fragment>
                             ))}
                         </IconButton>
-                        
-
-
                     </div>
                     
                     <div className="mid_menu">
@@ -77,7 +110,7 @@ function Banner(){
                     </div>
                     
                     <div className="right_menu">
-                        <Button onClick={()=>history.push('/login')}>로그인</Button>
+                        <Button onClick={loginBtnHandler}>{loginBtn}</Button>
                     <IconButton>
                         <ShoppingCartOutlinedIcon/>
                     </IconButton>
