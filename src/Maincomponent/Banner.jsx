@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import clsx from 'clsx';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
-import {IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText,  Grid } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
@@ -17,7 +17,7 @@ import {SidebarData} from "./SidebarData"
 import "./css/Banner.css"
 
 
-function Banner(){
+function Banner(props){
 
     let [product_gender, setproduct_gender] = useState(null);
 
@@ -31,7 +31,7 @@ function Banner(){
 
     const [state, setState] = React.useState({
         top: false,
-      });
+    });
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -45,21 +45,26 @@ function Banner(){
         window.location.reload(); // 메인페이지를 제외하고 다른 페이지를 클릭했을 때, 주소값만 변하고 새로고침이 되지 않아서 reload시킴 - 다른 방법이 있을 것 같음
     }
 
+    function selectMyCos(){
+        props.history.push("/mycos-member");
+        window.location.reload();
+    }
+
     return(
         <>
-            <div className="banner" style={{width:'100%'}}>
-                    <div style={{float:'left'}} className="left_menu">
-                        <IconButton style={{float:'left', minWidth:'50px', marginRight:'10px'}} className="menuButton" onClick={showSidebar}>
+            <div className="banner" style={{width:'100%', height:'60px', justifyContent:'space-between', alignItems:'center', display:'flex'}}>
+                    <div className="left_menu">
+                        <IconButton style={{float:'left', minWidth:'50px'}} className="menuButton" onClick={showSidebar}>
                             <MenuIcon/>
                         </IconButton>
                        
-                        <IconButton style={{paddingTop:'7px'}} className="menuButton">
+                        <IconButton style={{paddingTop:'13px'}} className="menuButton">
                             {['top'].map((anchor) => (
                                 <React.Fragment key={anchor}>
-                                <div onClick={toggleDrawer(anchor, true)} style={{width:'23px',height:'23px',paddingTop:'5px'}}><SearchOutlinedIcon/></div>
+                                <div onClick={toggleDrawer(anchor, true)} style={{width:'23px',height:'23px'}}><SearchOutlinedIcon/></div>
                                 <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-                                    <form noValidate action="/search-keyword" autoComplete="off" style={{width:'100%', height:'80px'}}>
-                                        <TextField id="standard-search" label="Search" type="search" onChange={searchKeyword} style={{paddingTop:'30px',width:'90%'}}/>
+                                    <form noValidate action="/search-keyword" autoComplete="off" style={{width:'100%', height:'80px', display:'flex', justifyContent:'center'}}>
+                                        <TextField id="standard-search" label="Search" type="search" onChange={searchKeyword} style={{paddingTop:'30px',width:'80%'}}/>
                                     </form>
                                 </Drawer>
                                 </React.Fragment>
@@ -70,11 +75,15 @@ function Banner(){
 
                     </div>
                     
+
                     <div className="mid_menu">
                         <img src={ Logo } style={{height:"50px"}} alt='testA' />
                     </div>
                     
                     <div className="right_menu">
+                    <IconButton style={{fontSize:'14px'}} onClick={selectMyCos}>
+                            MY COS
+                    </IconButton>
                     <IconButton>
                         <ShoppingCartOutlinedIcon/>
                     </IconButton>
@@ -108,8 +117,9 @@ function Banner(){
                 </ul>
             </nav>
         </>
+        
     );
 
 }
 
-export default Banner;
+export default withRouter(Banner);

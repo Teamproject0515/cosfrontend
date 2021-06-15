@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 function Topbig(props){
 
-    function selectCategoryList(selectGender){
+    function selectGenderList(selectGender){
         window.localStorage.setItem("selectGender", selectGender);
         props.history.push('/product-list');
     }
@@ -20,10 +20,10 @@ function Topbig(props){
                 <h1>A summer in style</h1>
                 <h4>절제된 감각으로 완성한 뉴 시즌 컬랙션</h4>
                 <div>
-                    <Button variant="contained" style={{backgroundColor:'white', width:'200px', height:'40px', borderRadius:'0px', marginBottom:'10px', boxShadow:'none', fontSize:'13px'}} onClick = {() => {selectCategoryList('W')}}>여성 에센셜 컬랙션</Button>
+                    <Button variant="contained" style={{backgroundColor:'white', width:'200px', height:'40px', borderRadius:'0px', marginBottom:'10px', boxShadow:'none', fontSize:'13px'}} onClick = {() => {selectGenderList('W')}}>여성 에센셜 컬랙션</Button>
                 </div>
                 <div>
-                    <Button variant="contained" style={{backgroundColor:'white', width:'200px', height:'40px', borderRadius:'0px', marginBottom:'10px', boxShadow:'none', fontSize:'13px'}} onClick = {() => {selectCategoryList('M')}}>남성 에센셜 컬랙션</Button>
+                    <Button variant="contained" style={{backgroundColor:'white', width:'200px', height:'40px', borderRadius:'0px', marginBottom:'10px', boxShadow:'none', fontSize:'13px'}} onClick = {() => {selectGenderList('M')}}>남성 에센셜 컬랙션</Button>
                 </div>
             </div>
         </div>
