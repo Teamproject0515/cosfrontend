@@ -14,7 +14,7 @@ function Mainmid(props){
     }
 
     return(
-        <div className="image_container">
+        <div className="image_container" >
             <div style={{width:'500px', textAlign:'left'}}>
                 <h1 style={{textAlign:'left'}}>Most popular</h1>
                 <h4 style={{textAlign:'left'}}>지금 가장 인기 있는 아이템</h4>

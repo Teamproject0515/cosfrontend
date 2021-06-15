@@ -36,17 +36,17 @@ class ProductInfoComponent extends Component{
     render(){
         return(
             <div>
-                {this.state.product.product_seq}
-                {this.state.product.product_title}
-                {this.state.product.product_price}
-                {this.state.product.product_color}
-                {this.state.product.product_img}
-                {this.state.product.product_gender}
-                {this.state.product.product_size}
-                {this.state.product.product_stock}
-                {this.state.product.product_sale}
-                {this.state.product.product_category}
-                {this.state.product.product_content}
+                <div> 아이디 : {this.state.product.product_id}</div>
+                <div> 타이틀 : {this.state.product.product_title}</div>
+                <div> 가격 : {this.state.product.product_price}</div>
+                <div> 색상 : {this.state.product.product_color}</div>
+                <div> 이미지 : {this.state.product.product_img}</div>
+                <div> 성별 : {this.state.product.product_gender}</div>
+                <div> 사이즈 : {this.state.product.product_size}</div>
+                <div> 수량 : {this.state.product.product_stock}</div>
+                <div> 판매량 : {this.state.product.product_saled}</div>
+                <div> 카테고리 : {this.state.product.product_category}</div>
+                <div> 내용 : {this.state.product.product_content}</div>
             </div>
         );
     }
