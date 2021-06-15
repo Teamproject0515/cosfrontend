@@ -16,6 +16,7 @@ import Logo from "./images/logo.jpg";
 import {SidebarData} from "./SidebarData"
 import "./css/Banner.css"
 import ApiService from '../Login/ApiServiceLogin';
+import ApiServiceLogin from "../Login/ApiServiceLogin";
 
 function Banner(){
 
@@ -51,21 +52,21 @@ function Banner(){
     const [loginBtn, setLoginBtn] = useState('login');
 
     //쿠키 값으로 session 확인 후 Boolean 값 받아서 버튼 이름 변경
-    useEffect(() => {    
-            console.log((String)(cookie.load("JSESSIONID")));
-            ApiService.checkSession()
-            .then(res=> {
-                let loginButton = res.data;
-                console.log(loginButton);
-                setLoginBtn(     
-                    loginButton =="true" ? 'logout' : 'login'
-                );
-                })
-            .catch(err=>{
-            console.log('checkSession 에러',err);
-            });
-      },[] );
-    
+    useEffect(() => {  
+         ApiServiceLogin.checkSession()
+         .then(res =>{
+             //Boolean 값 받기
+             let loginButton = res.data;
+             console.log("checkSession()결과:"+loginButton);
+             setLoginBtn(     
+                loginButton === true ? 'logout' : 'login'
+                  );
+         })
+         .catch(err=>{
+             console.log('checkSession() 에러',err); 
+         });     
+      });
+
     //loginBtn 값에 따라서 보여지는 페이지 지정
     const loginBtnHandler = ()=>{
         if(loginBtn == "login"){
@@ -73,9 +74,11 @@ function Banner(){
     }else if (loginBtn == "logout"){
         ApiService.lotout()
         .then(res=> {
+            sessionStorage.removeItem("user");
             cookie.remove('user_email');
             window.alert("로그아웃이 완료 되었습니다.");
             history.push('/');
+            window.location.reload();
         })
         .catch( err=> {
             console.log('lotout() 에러', err);

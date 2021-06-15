@@ -16,20 +16,14 @@ const USER_API_BASE_URL =  "http://localhost:8080/cos";
     } 
     
     checkSession(){
-        return axios.get(USER_API_BASE_URL+'/sessionFalse');
+        return axios.get(USER_API_BASE_URL+'/checkSession');
     }
 
     lotout(userEmail){
         return axios.get(USER_API_BASE_URL+'/signOut/'+userEmail);
     }
 
-    KakaoLogin(res){
-        return axios.get(USER_API_BASE_URL+'/signIn/kakao',{
-            headers: {
-                Authorization: res.response.access_token,}
-        });
-    }
-
+ 
 }
 
 export default new APIService();
