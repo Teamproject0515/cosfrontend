@@ -4,7 +4,6 @@ import React,{useState, useEffect} from 'react'
 import {useHistory } from "react-router-dom";
 import ApiService from "./ApiServiceLogin";
 import styled from "styled-components";
-import {useCookies} from 'react-cookies';
 
 
 function LoginTextComponent() {
@@ -15,7 +14,7 @@ function LoginTextComponent() {
     const [isBtnActive, setIsBtnActive] = useState(false); //Button 활성화 관련, useeffect()와 사용
     
 
-    // 버튼이 활성화 되는 조건
+    // 버튼이 활성화 되는 조건 주기
     useEffect(() => {
     setIsBtnActive(
         user.user_email.includes("@") && user.user_password.length >=1 ? true : false
@@ -37,20 +36,24 @@ function LoginTextComponent() {
        }else{
         ApiService.postLogin(user)
         .then(res => {
-            if(user.user_email== res.data.user_email){        
+            if(user.user_email=== res.data.user_email){        
             let user_email = res.data.user_email;
             let message = user_email+'로그인 완료';
-            console.log("user",user);
-            console.log("성공",message);
+            console.log("성공:",message);
             console.log("getLogin() 성공");
-            if(res.data.user_role=="0"){
-            history.push('/');
+            //user_email 저장
+            sessionStorage.setItem("user",user_email);
+            //user_role에 따라서 페이지 다르게 요청
+            if(res.data.user_role==="0"){
+            //history 없이 이동(로그인 페이지 다시 못돌아가도록)
+            history.replace("/");
+            window.location.reload();
             }else{
-                history.push("/login");
+                history.push("/signIn");
             }
             } else{
                 window.alert("아이디와 비밀번호를 다시 확인해주세요.");
-                history.push('/login');
+                history.push('/signIn');
             }
         })  
         .catch( err => {
@@ -68,7 +71,7 @@ function LoginTextComponent() {
     align-items: left;
     `;
 
-  
+ 
     return (
        <div style={{width: '350px',
                     margin:'80px auto',
@@ -97,13 +100,15 @@ function LoginTextComponent() {
             </RadioGroup>        
            </div>
            <Button fullWidth variant="contained" onClick={getLogin}>로그인</Button><br></br>
-           </form>
-           
+          
+           </form>        
            <Footer>
             <Button onClick={() => {history.push("/findEmail")}}>아이디 찾기</Button>&nbsp;&nbsp;
             <Button onClick={() => {history.push("/findPW")}}>비밀번호 찾기</Button>
             </Footer>      
         </div>
+
+ 
     );
 
 }
