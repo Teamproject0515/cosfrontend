@@ -1,4 +1,4 @@
-import { TextField , Button, Link, IconButton} from '@material-ui/core'
+import {Table, TableRow, TableCell} from '@material-ui/core'
 import {useHistory} from "react-router-dom";
 import Footer from "./FindIdFooter";
 import styled from "styled-components";
@@ -24,46 +24,26 @@ function ShowEmail() {
     margin:80px auto;
     height: 400px;
     maxHeight: 500px;
+    text-align: center;
     `;
 
-    const Header = styled.div`
-    margin-bottom: 20px;
-    p{
-        font-size:14px;       
-    }
-    `;
-
-    const Body = styled.div`
-    margin: 30px 0;
-    p{
-        color:gray;
-        font-size:14px;
-        text-align: left;      
-    }
-    `;
-
-    styled.table`
-    margin: 40px 0;
-    text-align: left;
-    `;
 
     return (
         <Div>
-            <Header className="Email-header">
+            <div className="Email-header">
                 <h3>아이디 찾기 결과</h3>
                 <p>다음 정보로 가입된 아이디 입니다.</p>                                    
-            </Header>
-            <Body className="Email-body">
-            <table>
-                <tr><th>이름</th></tr>
-                <tr><td>{user_name}</td></tr>
-                <tr><th>생년월일</th></tr>
-                <tr><td>{user_birthday}</td></tr>
-                <tr><th>아이디</th></tr>
-                <tr><td>{user_email}</td></tr>
-            </table>
+            </div>
+            <Table> 
+                <TableRow><TableCell 
+                >이름</TableCell></TableRow>
+                <TableRow><TableCell align="center">{user_name}</TableCell></TableRow>
+                <TableRow><TableCell align="center">생년월일</TableCell></TableRow>
+                <TableRow><TableCell align="center">{user_birthday}</TableCell></TableRow>
+                <TableRow><TableCell align="center">아이디/이메일</TableCell></TableRow>
+                <TableRow><TableCell align="center">{user_email}</TableCell></TableRow>
+            </Table>
             <p>아이디 찾기에 더 궁금하신 사항이 있다면 고객센터에 문의 주세요.</p>
-            </Body>
             <Footer/>
         </Div>
     )

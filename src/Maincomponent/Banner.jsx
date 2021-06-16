@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import clsx from 'clsx';
 import {Link, useHistory} from "react-router-dom";
-import cookie from 'react-cookies';
 import {IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
@@ -59,7 +58,7 @@ function Banner(){
              let loginButton = res.data;
              console.log("checkSession()결과:"+loginButton);
              setLoginBtn(     
-                loginButton === true ? 'logout' : 'login'
+                loginButton === true ? 'SignOut' : 'SignIn'
                   );
          })
          .catch(err=>{
@@ -69,13 +68,12 @@ function Banner(){
 
     //loginBtn 값에 따라서 보여지는 페이지 지정
     const loginBtnHandler = ()=>{
-        if(loginBtn == "login"){
-        history.push('/login');
-    }else if (loginBtn == "logout"){
+        if(loginBtn == "SignIn"){
+        history.push('/signIn');
+    }else if (loginBtn == "SignOut"){
         ApiService.lotout()
         .then(res=> {
             sessionStorage.removeItem("user");
-            cookie.remove('user_email');
             window.alert("로그아웃이 완료 되었습니다.");
             history.push('/');
             window.location.reload();
