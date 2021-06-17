@@ -1,10 +1,8 @@
-import { TextField , Button, Link, RadioGroup, FormControlLabel, Radio} from '@material-ui/core'
-import { BorderTop, Height } from '@material-ui/icons';
+import { TextField , Button, RadioGroup, FormControlLabel, Radio} from '@material-ui/core'
 import React,{useState, useEffect} from 'react'
 import {useHistory } from "react-router-dom";
 import ApiService from "./ApiServiceLogin";
 import styled from "styled-components";
-
 
 function LoginTextComponent() {
     
@@ -61,26 +59,16 @@ function LoginTextComponent() {
         });
     }
     }
-
-    const Header = styled.div`
-    margin: 0 0 20px 0;
-    `;
-
-    const Footer = styled.div`
-    margin: 30px 0;
-    align-items: left;
-    `;
-
  
     return (
-       <div style={{width: '350px',
+       <div className='loginForm'style={{width: '350px',
                     margin:'80px auto',
                     height: '400px',
                     maxHeight: '500px',}}>            
-            <Header>
-            <span><b>로그인</b></span>
-            <Button onClick={()=>history.push("/signUp")} size="large" color="primary">회원가입</Button>
-            </Header>
+            <div className='login-header'>
+            <h3>로그인</h3>
+            <Button onClick={()=>history.push("/signUp")} size="large" color="primary">회원가입하기 SignUp</Button>
+            </div>
 
             <form style={{margin: '30px auto',
                          borderTop: '1px solid lightGray',
@@ -112,5 +100,13 @@ function LoginTextComponent() {
     );
 
 }
+const Header = styled.div`
+margin: 0 0 20px 0;
+`;
+
+const Footer = styled.div`
+margin: 30px 0;
+align-items: left;
+`;
 
 export default LoginTextComponent

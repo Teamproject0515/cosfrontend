@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import { TextField , Button, Link, IconButton} from '@material-ui/core'
+import { TextField , Button} from '@material-ui/core'
 import {useHistory} from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,9 +12,10 @@ function FindPWComponent() {
     const[user, setUser] = useState({user_email:"", user_name:"", user_birthday:""}); //user객체 생성
     const [isBtnActive, setIsBtnActive] = useState(false); // useeffect()와 사용
 
+    //입력값 조건 충족 확인하기
     useEffect(() => {
         setIsBtnActive(
-            user.user_email.includes("@") && user.user_name.length>1 && user.user_birthday.length ==8 ? true : false
+            user.user_email.includes("@") && user.user_name.length>1 && user.user_birthday.length ===8 ? true : false
         );
         }, [user]);
  
@@ -33,7 +34,7 @@ function FindPWComponent() {
         }else{
          ApiService.findPW(user)
          .then(res => {
-             if(user.user_name == res.data.user_name){
+             if(user.user_name === res.data.user_name){
              let user_name = res.data.user_name;
              let user_birthday = res.data.user_birthday;
              let user_email = res.data.user_email;
@@ -63,7 +64,9 @@ function FindPWComponent() {
 
     return (
         <>        
-        <div style={{width: '350px', 
+        <div className=""
+        
+        style={{width: '350px', 
                     margin:'80px auto',
                      height: '420px',
                     maxHeight: '500px',}}> 

@@ -1,11 +1,12 @@
 import {Table, TableRow, TableCell} from '@material-ui/core'
-import {useHistory} from "react-router-dom";
 import Footer from "./FindIdFooter";
 import styled from "styled-components";
 import React,{ useEffect} from 'react';
+import {useHistory } from "react-router-dom";
+
 
 function ShowEmail() {
-    const history = useHistory(); 
+    const history = useHistory();
 
     let user_name = sessionStorage.getItem("user_name");
     let user_birthday = sessionStorage.getItem("user_birthday");
@@ -19,14 +20,6 @@ function ShowEmail() {
         };
     },[]);
 
-    const Div = styled.div`
-    width: 350px;
-    margin:80px auto;
-    height: 400px;
-    maxHeight: 500px;
-    text-align: center;
-    `;
-
 
     return (
         <Div>
@@ -34,9 +27,9 @@ function ShowEmail() {
                 <h3>아이디 찾기 결과</h3>
                 <p>다음 정보로 가입된 아이디 입니다.</p>                                    
             </div>
+            <div className="Email-body">
             <Table> 
-                <TableRow><TableCell 
-                >이름</TableCell></TableRow>
+                <TableRow><TableCell align="center">이름</TableCell></TableRow>
                 <TableRow><TableCell align="center">{user_name}</TableCell></TableRow>
                 <TableRow><TableCell align="center">생년월일</TableCell></TableRow>
                 <TableRow><TableCell align="center">{user_birthday}</TableCell></TableRow>
@@ -44,9 +37,18 @@ function ShowEmail() {
                 <TableRow><TableCell align="center">{user_email}</TableCell></TableRow>
             </Table>
             <p>아이디 찾기에 더 궁금하신 사항이 있다면 고객센터에 문의 주세요.</p>
+            </div>
             <Footer/>
         </Div>
     )
 }
+
+const Div = styled.div`
+width: 350px;
+margin:80px auto;
+height: 400px;
+maxHeight: 500px;
+text-align: center;
+`;
 
 export default ShowEmail

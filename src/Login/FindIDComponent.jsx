@@ -14,7 +14,7 @@ function FindIDComponent() {
 
      useEffect(() => {
         setIsBtnActive(
-            user.user_name.length>1 && user.user_birthday.length ==8 ? true : false
+            user.user_name.length>1 && user.user_birthday.length === 8 ? true : false
         );
         }, [user]);
  
@@ -32,7 +32,7 @@ function FindIDComponent() {
         }else{
          ApiService.findEmail(user)
          .then(res => {
-             if(user.user_name == res.data.user_name){
+             if(user.user_name === res.data.user_name){
                 
              let user_name = res.data.user_name;
              let user_birthday = res.data.user_birthday;

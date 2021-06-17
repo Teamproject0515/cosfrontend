@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USER_API_BASE_URL =  "http://localhost:8080/cos";
+const USER_API_BASE_URL =  "http://localhost:8080/cosmos";
  class APIService {
 
     postLogin(user){

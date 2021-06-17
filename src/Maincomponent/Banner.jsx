@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import clsx from 'clsx';
 import {Link, useHistory} from "react-router-dom";
-import {IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {IconButton, TextField, Button, Drawer,} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import ModalLoginForm from "../Login/ModalLoginForm";
 
 
 
@@ -83,6 +81,15 @@ function Banner(){
         });
     }
 }
+    const [modalOpen, setModalOpen] = useState(false);
+
+    function openModal(){
+        setModalOpen(true);
+    }
+
+    function closeModal(){
+        setModalOpen(false);
+    }
 
     return(
         <>
@@ -111,7 +118,7 @@ function Banner(){
                     </div>
                     
                     <div className="right_menu">
-                        <Button onClick={loginBtnHandler}>{loginBtn}</Button>
+                        <Button onClick={loginBtnHandler}>{loginBtn}</Button>                        
                     <IconButton>
                         <ShoppingCartOutlinedIcon/>
                     </IconButton>
