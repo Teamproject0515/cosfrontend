@@ -15,7 +15,7 @@ import "./css/Banner.css"
 import ApiService from '../Login/ApiServiceLogin';
 import ApiServiceLogin from "../Login/ApiServiceLogin";
 
-function Banner(){
+function Banner(props){
 
     let [product_gender, setproduct_gender] = useState(null);
 
@@ -29,9 +29,7 @@ function Banner(){
         window.localStorage.setItem("search_keyword", e.target.value);
     }
 
-    const [state, setState] = React.useState({
-        top: false,
-      });
+    const [state, setState] = useState({top: false,});
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -42,7 +40,6 @@ function Banner(){
 
     function selectCategoryList(value){
         window.localStorage.setItem("selectGender", value);
-        window.location.reload(); // 메인페이지를 제외하고 다른 페이지를 클릭했을 때, 주소값만 변하고 새로고침이 되지 않아서 reload시킴 - 다른 방법이 있을 것 같음
     }
 
     //로그인 버튼 / 로그아웃 버튼 설정
@@ -57,23 +54,23 @@ function Banner(){
              console.log("checkSession()결과:"+loginButton);
              setLoginBtn(     
                 loginButton === true ? 'SignOut' : 'SignIn'
-                  );
+                  );                
          })
          .catch(err=>{
              console.log('checkSession() 에러',err); 
          });     
-      });
+      },[]);
 
     //loginBtn 값에 따라서 보여지는 페이지 지정
     const loginBtnHandler = ()=>{
         if(loginBtn == "SignIn"){
-        history.push('/signIn');
+        //history.push('/signIn');
+        openModal();
     }else if (loginBtn == "SignOut"){
         ApiService.lotout()
         .then(res=> {
             sessionStorage.removeItem("user");
             window.alert("로그아웃이 완료 되었습니다.");
-            history.push('/');
             window.location.reload();
         })
         .catch( err=> {
@@ -83,11 +80,11 @@ function Banner(){
 }
     const [modalOpen, setModalOpen] = useState(false);
 
-    function openModal(){
+    const openModal= () =>{
         setModalOpen(true);
     }
 
-    function closeModal(){
+    const closeModal= ()=>{
         setModalOpen(false);
     }
 
@@ -118,7 +115,8 @@ function Banner(){
                     </div>
                     
                     <div className="right_menu">
-                        <Button onClick={loginBtnHandler}>{loginBtn}</Button>                        
+                        <Button onClick={loginBtnHandler}>{loginBtn}</Button> 
+                     <ModalLoginForm open={modalOpen} close={closeModal}></ModalLoginForm>                       
                     <IconButton>
                         <ShoppingCartOutlinedIcon/>
                     </IconButton>
