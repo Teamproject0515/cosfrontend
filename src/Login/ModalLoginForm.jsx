@@ -5,17 +5,24 @@ import {useHistory } from "react-router-dom";
 import ApiService from "./ApiServiceLogin";
 import styled from "styled-components";
 import "./css/ModalLoginForm.css";
+import { PinDropSharp } from '@material-ui/icons';
 
 function ModalLoginForm(props) {
     
  // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
  const { open, close } = props;
 
+ const [openedModal, setOpendModal] = useState(open);
+
+ const closeModal = ()=>{
+    setOpendModal(close);
+ }
+
  const history = useHistory(); 
 
  const[user, setUser] = useState({user_email:"", user_password:"" , user_role:"0"}); //user객체 생성
  const [isBtnActive, setIsBtnActive] = useState(false); //Button 활성화 관련, useeffect()와 사용
- 
+    
 
  //로그인 버튼이 활성화 되는 조건 주기
  useEffect(() => {
@@ -78,10 +85,10 @@ function ModalLoginForm(props) {
              <section>
                  <header>
                      <span> <h3>로그인/ Sign In</h3></span>
-                     <button className="close" onClick={props.close}> &times; </button>
+                     <button className="close" onClick={close}> &times; </button>
                  </header>
                  <main> 
-            <Button onClick={()=>history.push("/signUp")} size="large" color="primary">회원가입하기 SignUp</Button>
+            <Button onClick={()=>{history.push("/signUp");closeModal()}} size="large" color="primary">회원가입하기 SignUp</Button>
                  <form style={{margin: '30px auto',
                       borderTop: '1px solid lightGray',}}>
                      <div style={{ margin :'10px 0', }}>
@@ -103,8 +110,8 @@ function ModalLoginForm(props) {
         </form>
                  </main>
                  <Footer>
-                 <Button onClick={() => {history.push("/findEmail")}}>아이디 찾기</Button>&nbsp;&nbsp;
-                 <Button onClick={() => {history.push("/findPW")}}>비밀번호 찾기</Button>
+                 <Button onClick={() => {history.push("/findEmail");closeModal()}}>아이디 찾기</Button>&nbsp;&nbsp;
+                 <Button onClick={() => {history.push("/findPW");closeModal()}}>비밀번호 찾기</Button>
                  </Footer>
              </section>
          ) : null }

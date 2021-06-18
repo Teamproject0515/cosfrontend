@@ -44,7 +44,7 @@ function LoginTextComponent() {
             //user_role에 따라서 페이지 다르게 요청
             if(res.data.user_role==="0"){
             //history 없이 이동(로그인 페이지 다시 못돌아가도록)
-            history.replace("/");
+            history.replace('/');
             window.location.reload();
             }else{
                 history.push("/signIn");
