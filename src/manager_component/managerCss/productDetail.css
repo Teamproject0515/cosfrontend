@@ -1,0 +1,85 @@
+.detail_wapper{
+    width: 80%;
+    height: 100%;
+    font-weight: 400;
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+    font-size: 13px;
+}
+.detail_img_box{
+    width: 50%;
+}
+.detail_img{
+    width: 100%;
+    object-fit: contain;
+}
+.detail_category{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    align-items: flex-start;
+}
+.detail_box{
+    width: 100%;
+    padding: 5px 0 0;
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.detail_box_name{
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    font-size: 12px;
+    width: 30%;
+    height: 50%;
+    margin-right: 10px;
+    border: 1px solid lightgray;
+}
+.detail_box_gender_category{
+    width: 100%;
+    padding: 5px 0 0;
+    display: flex;
+    margin-top: 5px;
+    justify-content: flex-start;
+}
+.detail_box_low{
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.detail_box_low_label{
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    font-size: 12px;
+    width: 80%;
+    height: 50%;
+    margin-right: 10px;
+    border: 1px solid lightgray;
+}
+
+.product_update_label{
+    font-weight: 600;
+}
+.detail_button{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    
+}
+.detail_button button{
+    width: 40%;
+    height: 100%;
+    font-size: 12px;
+    background-color: #444444;
+    color: white;
+    margin-right: 10px;
+    border: 1px solid #444444;
+    cursor: pointer;
+}
+
+

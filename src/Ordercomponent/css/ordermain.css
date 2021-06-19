@@ -1,0 +1,37 @@
+.oderList p{
+    color: #444444;
+    font: 13px 'Gill Sans MT Pro Medium', 'Nanum Barun Gothic', 'Gill Sans MT Pro Book', 'Gill Sans', '돋움', dotum, sans-serif;
+}
+.oderList img{
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 120px;
+}
+.exitbutton{
+    float: right;
+}
+.cartprice{
+    text-align: right ;
+}
+.cartlistprice{
+    float:none;
+    
+}
+.cartlistpriceleft{
+    
+    float: left;
+}
+.cartlistpriceright{
+    float: right;
+}
+.claerfloat{
+    clear:both;
+    height: 0;
+    overflow: hidden;
+}
+hr{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color:lightgray;
+}

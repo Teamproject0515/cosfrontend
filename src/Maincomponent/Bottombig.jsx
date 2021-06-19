@@ -6,12 +6,12 @@ function Bottombig(){
 
     return(
         <div className="bottom-wrapper">
-            <div className="bottom-image">
+            <div className="bottom-image" style={{display:'flex', justifyContent:'center'}}>
                 <img src={Hnmain} style={{width:'1560px'}}/>
             </div>
             <div className="bottom-in">
                 <h1>Fashion for the future</h1>
-                <h3>지속가능성에 대한 이야기</h3>
+                <h3 style={{marginBottom:'10px'}}>지속가능성에 대한 이야기</h3>
                 <div>
                     <Button variant="contained" style={{backgroundColor:'white', width:'200px', height:'40px', borderRadius:'0px', marginBottom:'10px', boxShadow:'none', fontSize:'13px'}}> 지속가능성 </Button>
                 </div>
