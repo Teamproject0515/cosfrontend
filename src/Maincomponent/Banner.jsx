@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import {Link, useHistory} from "react-router-dom";
+import {Link, useHistory, withRouter} from "react-router-dom";
 import {IconButton, TextField, Button, Drawer,} from "@material-ui/core";
+import clsx from 'clsx';
+import {IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText,  Grid } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import ModalLoginForm from "../Login/ModalLoginForm";
-
-
-
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 import Logo from "./images/logo.jpg";
 import {SidebarData} from "./SidebarData"
 import "./css/Banner.css"
-import ApiService from '../Login/ApiServiceLogin';
 import ApiServiceLogin from "../Login/ApiServiceLogin";
+
 
 function Banner(props){
 
@@ -30,6 +31,7 @@ function Banner(props){
     }
 
     const [state, setState] = useState({top: false,});
+
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -88,21 +90,27 @@ function Banner(props){
         setModalOpen(false);
     }
 
+    function selectMyCos(){
+        props.history.push("/mycos-member");
+
+    }
+
     return(
         <>
-            <div className="banner" style={{width:'100%'}}>
-                    <div style={{float:'left'}} className="left_menu">
-                        <IconButton style={{float:'left', minWidth:'50px', marginRight:'10px'}} className="menuButton" onClick={showSidebar}>
+      <div className="banner" style={{width:'100%', height:'60px', justifyContent:'space-between', alignItems:'center', display:'flex'}}>
+                    <div className="left_menu">
+                        <IconButton style={{float:'left', minWidth:'50px'}} className="menuButton" onClick={showSidebar}>
                             <MenuIcon/>
                         </IconButton>
                        
-                        <IconButton style={{paddingTop:'7px'}} className="menuButton">
+                        <IconButton style={{paddingTop:'13px'}} className="menuButton">
                             {['top'].map((anchor) => (
                                 <React.Fragment key={anchor}>
-                                <div onClick={toggleDrawer(anchor, true)} style={{width:'23px',height:'23px',paddingTop:'5px'}}><SearchOutlinedIcon/></div>
+                                <div onClick={toggleDrawer(anchor, true)} style={{width:'23px',height:'23px'}}><SearchOutlinedIcon/></div>
                                 <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-                                    <form noValidate action="/search-keyword" autoComplete="off" style={{width:'100%', height:'80px'}}>
-                                        <TextField id="standard-search" label="Search" type="search" onChange={searchKeyword} style={{paddingTop:'30px',width:'90%'}}/>
+                                    <form noValidate action="/search-keyword" autoComplete="off" style={{width:'100%', height:'80px', display:'flex', justifyContent:'center'}}>
+                                        <TextField id="standard-search" label="Search" type="search" onChange={searchKeyword} style={{paddingTop:'30px',width:'80%'}}/>
+
                                     </form>
                                 </Drawer>
                                 </React.Fragment>
@@ -117,6 +125,7 @@ function Banner(props){
                     <div className="right_menu">
                         <Button onClick={loginBtnHandler}>{loginBtn}</Button> 
                      <ModalLoginForm open={modalOpen} close={closeModal}></ModalLoginForm>                       
+
                     <IconButton>
                         <ShoppingCartOutlinedIcon/>
                     </IconButton>
@@ -150,8 +159,9 @@ function Banner(props){
                 </ul>
             </nav>
         </>
+        
     );
 
 }
 
-export default Banner;
+export default withRouter(Banner);
