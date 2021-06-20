@@ -44,7 +44,7 @@ function ManagerPage() {
         setMemberinfo(false);
     }
 
-    let user_email = 'suovj140@gmail.com';
+    let user_email = sessionStorage.getItem("user");
 
     let [userinfo, setuserinfo] = useState([]);
     const[state, setState] = useState(0);

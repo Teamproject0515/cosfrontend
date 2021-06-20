@@ -1,0 +1,90 @@
+.product_update_input{
+    border: 0px;
+    width: 90%;
+    padding: 5px;
+    background-color: rgb(243, 241, 241);
+    margin-top: 5px;
+    text-align: left;
+}
+.product_update_rowBox{
+    display: flex;
+    width: 100%;
+}
+.product_update_genderCategory{
+    width: 50%;
+    display: flex;
+    margin-right: 5px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.genderCategory_selectbox{
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: 20px;
+    font-size: 12px;
+    margin-right: 10px;
+    padding: 0px 10px;
+    line-height: 1.75;
+    color: #333;
+    background-color: rgb(243, 241, 241);
+    border: 1px solid #cccccc;
+}
+.product_update_catagoryBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.product_update_stock{
+    width: 80%;
+    border: 0px;
+    padding: 5px;
+    background-color: rgb(243, 241, 241);
+    margin-right: 10px;
+    text-align: left;
+}
+.product_content_scroll{
+    overflow:scroll;
+    width:90%;
+    height: 20%;
+    padding:10px;
+    display: flex;
+    align-items: flex-start;
+    background-color: rgb(243, 241, 241);
+}
+.product_update_textarea{
+    text-align: left;
+    resize: none;
+    border: none;
+    background-color: rgb(243, 241, 241);
+}
+.update_selectbox{
+    display: block;
+    width: 88%;
+    max-width: 320px;
+    height: 20px;
+    font-size: 12px;
+    margin-right: 10px;
+    padding: 0px 10px;
+    line-height: 1.75;
+    color: #333;
+    background-color: rgb(243, 241, 241);
+    border: 1px solid #cccccc;
+}
+.update_button{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+.update_button button{
+    width: 40%;
+    height: 100%;
+    font-size: 12px;
+    background-color: #444444;
+    color: white;
+    margin-right: 10px;
+    border: 1px solid #444444;
+}

@@ -6,6 +6,7 @@
     top:0;
     left:0;
     z-index: 1;
+    
 }
 body{
     padding-top: 30px;
@@ -14,8 +15,9 @@ body{
     float: left;
 }
 .mid_menu{
-    float: right;
-    left:50%;
+    float: left;
+    position:relative;
+    left:2%;
 }
 .right_menu{
     float: right;

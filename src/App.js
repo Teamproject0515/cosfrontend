@@ -1,7 +1,8 @@
 import {BrowserRouter as Router} from "react-router-dom";
-import AppRouter from './ProductListComponent/route/RouterComponent';
+import AppRouter from './RouterComponent';
 import Banner from "./Maincomponent/Banner";
 import Footer from "./Maincomponent/Footer";
+//import {ScrollToTop} from './ScrollToTop';
 
 
 function App() {
@@ -9,7 +10,9 @@ function App() {
     <div className="App">
       <Router >
         <Banner />
+        {/*<ScrollToTop>*/}
         <AppRouter />
+        {/*</ScrollToTop>*/}
         <Footer/>
       </Router>
     </div>

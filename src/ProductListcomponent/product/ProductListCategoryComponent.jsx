@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ApiService from "../../ApiService";
 import img01 from '../images/01_pre.jpg';
-import { Link } from 'react-router-dom';
 import SelectOptionComponenttest from './SelectOptionComponent';
 import SortByComponent from './SortByComponent';
 import OptionResetComponent from './OptionResetComponent';
@@ -98,6 +97,8 @@ function ProductListComponent(props){
         props.history.push('/accessories-list')
     }
 
+    const [isHover, setIsHover] = useState(0);
+
     return (
         <div style={{display:'flex', alignItems:'center', textAlign:'center', justifyContent:'center'}}>
             <Grid container spacing={3} style={{ paddingLeft:'10px', paddingRight:'10px', minHeight:'800px', width:'100%', maxWidth:'1560px'}}>
@@ -107,12 +108,11 @@ function ProductListComponent(props){
                     <Typography variant ="h5" style={{marginTop:'30px'}}>Clothing Items</Typography>
                         
                     <div>
-                        <FormControl style={{minWidth:'80px'}}>
-                            <button variant="contained" style={{border:'0px'}} onClick = {() => {selectCategoryList(null)}}><InputLabel>Clothing</InputLabel></button>
-                            {/* </a> */}
+                        <FormControl style={{minWidth:'80px', border:'0px'}}>
+                            <button style={{border:'0px', backgroundColor:'white'}} onClick = {() => {selectCategoryList(null)}}><InputLabel>Clothing</InputLabel></button>
                         </FormControl>
-                        <FormControl style={{minWidth:'80px'}}>
-                            <button variant="contained" style={{border:'0px'}} onClick = {() => {selectAccessoryList('악세사리')}}><InputLabel>Accessories</InputLabel></button>
+                        <FormControl style={{minWidth:'80px', border:'0px'}}>
+                            <button style={{border:'0px', backgroundColor:'white'}} onClick = {() => {selectAccessoryList('악세사리')}}><InputLabel>Accessories</InputLabel></button>
                         </FormControl>
                     </div>
 
@@ -145,22 +145,25 @@ function ProductListComponent(props){
 
                     {/* 바디 */}
                     {products.map(product =>
-                <Grid item xs={6} sm={4} style={{margin:'0px'}}>
-                    <Table style={{marginBottom:'30px'}}>     
-                        <div align="right" onClick = {() => {Productinfo(product.product_id)}}>
+                <Grid item xs={6} sm={4} style={{margin:'0px', marginBottom:'30px'}} onClick = {() => {Productinfo(product.product_id)}}>
+                    {/*<Table style={{marginBottom:'30px'}} onClick = {() => {Productinfo(product.product_id)}}>     */}
+                        {/*<div onClick = {() => {Productinfo(product.product_id)}}>*/}
                             <TableRow key={product.product_id}>
-                                <TableCell component="th" scope="product" style={{border:'0px', padding:'0px'}}> 
-                                    <img /*src={img01}*/src={imgUrl+product.imgs[0]} style={{width:'100%'}}/>
-                                </TableCell>
+                                    <img /*src={img01}*/ src={imgUrl+product.imgs[isHover]} style={{width:'100%'}}
+
+                                       // onMouseOver={(event) =>{ setIsHover(1) } }
+                                       // onMouseOut={(event) => { setIsHover(0) } }
+                                    
+                                    />
                             </TableRow>
                             <TableRow>
-                                <TableCell alingn="right" style={{border:'0px'}}>{ product.product_title }</TableCell>
+                                <TableCell style={{border:'0px'}}>{ product.product_title }</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell alingn="right" style={{border:'0px'}}>{ product.product_price }</TableCell>
+                                <TableCell style={{border:'0px'}}>{ product.product_price }</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell alingn="right" style={{border:'0px'}}>
+                                <TableCell style={{border:'0px'}}>
 
                                     {/* product안의 color배열을 다시 map해서 출력하는 것 */}
                                     {product.colorSet.map(color=>
@@ -170,8 +173,8 @@ function ProductListComponent(props){
                                     )}
                                 </TableCell>
                             </TableRow>
-                        </div>
-                    </Table>
+                        {/*</div>*/}
+                    {/*</Table>*/}
                 </Grid>
                     )}     
 

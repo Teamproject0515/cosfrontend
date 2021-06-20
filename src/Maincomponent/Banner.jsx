@@ -1,20 +1,18 @@
-import React, { useState } from "react";
-import clsx from 'clsx';
-import {Link, withRouter} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {Link, withRouter, useHistory} from "react-router-dom";
 
 import {IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText,  Grid } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 
 
 import Logo from "./images/logo.jpg";
-import {SidebarData} from "./SidebarData"
-import "./css/Banner.css"
+import {SidebarData} from "./SidebarData";
+import "./css/Banner.css";
+import ApiServiceLogin from "../Login/ApiServiceLogin";
 
 
 function Banner(props){
@@ -24,6 +22,8 @@ function Banner(props){
     const [sidebar,setSidebar] = useState(false);
 
     const showSidebar = ()=> setSidebar(!sidebar);
+
+    const history = useHistory();
 
     function searchKeyword(e){
         window.localStorage.setItem("search_keyword", e.target.value);
@@ -42,13 +42,60 @@ function Banner(props){
 
     function selectCategoryList(value){
         window.localStorage.setItem("selectGender", value);
-        window.location.reload(); // 메인페이지를 제외하고 다른 페이지를 클릭했을 때, 주소값만 변하고 새로고침이 되지 않아서 reload시킴 - 다른 방법이 있을 것 같음
+        // window.location.reload(); // 메인페이지를 제외하고 다른 페이지를 클릭했을 때, 주소값만 변하고 새로고침이 되지 않아서 reload시킴 - 다른 방법이 있을 것 같음
     }
 
     function selectMyCos(){
-        props.history.push("/mycos-member");
+        history.push("/mycos-member");
         window.location.reload();
     }
+
+    //로그인 버튼 / 로그아웃 버튼 설정
+    const [loginBtn, setLoginBtn] = useState('login');
+    const [loginCheck, setLoginCheck] = useState(false);
+    //쿠키 값으로 session 확인 후 Boolean 값 받아서 버튼 이름 변경
+    useEffect(() => {  
+         ApiServiceLogin.checkSession()
+         .then(res =>{
+             //Boolean 값 받기
+             let loginButton = res.data;
+             console.log("checkSession()결과:"+loginButton);
+             setLoginBtn(     
+                loginButton === true ? 'SignOut' : 'SignIn'
+                  );
+         })
+         .catch(err=>{
+             console.log('checkSession() 에러',err); 
+         });     
+
+         if(sessionStorage.getItem("user") != null){
+            setLoginCheck(true);
+         };
+
+      },[]);
+
+    //loginBtn 값에 따라서 보여지는 페이지 지정
+    const loginBtnHandler = ()=>{
+        if(loginBtn == "SignIn"){
+            history.push('/SignIn');
+        }else if (loginBtn == "SignOut"){
+        ApiServiceLogin.lotout()
+        .then(res=> {
+            sessionStorage.removeItem("user");
+            window.alert("로그아웃이 완료 되었습니다.");
+            history.push('/');
+            window.location.reload();
+        })
+        .catch( err=> {
+            console.log('lotout() 에러', err);
+        }, [loginCheck]);
+    }
+}
+
+//    function cosMain(){
+//        props.history.push("/");
+//        window.location.reload();
+//    }
 
     return(
         <>
@@ -77,13 +124,14 @@ function Banner(props){
                     
 
                     <div className="mid_menu">
-                        <img src={ Logo } style={{height:"50px"}} alt='testA' />
+                        <Button onClick={()=>history.push('/')}><img src={ Logo } style={{height:"50px"}} alt='testA' /></Button>
                     </div>
                     
                     <div className="right_menu">
-                    <IconButton style={{fontSize:'14px'}} onClick={selectMyCos}>
-                            MY COS
-                    </IconButton>
+                    <Button onClick={loginBtnHandler}>{loginBtn}</Button>  
+                    
+                    {loginCheck && <IconButton style={{fontSize:'14px'}} onClick={selectMyCos}> MY COS </IconButton>}
+                    
                     <IconButton>
                         <ShoppingCartOutlinedIcon/>
                     </IconButton>

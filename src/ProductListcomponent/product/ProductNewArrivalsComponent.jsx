@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import ApiService from "../../ApiService";
 import new01 from '../images/new01.jpg';
 import new02 from '../images/new02.jpg';
 import new03 from '../images/new03.jpg';

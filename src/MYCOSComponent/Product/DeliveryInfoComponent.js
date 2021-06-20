@@ -87,8 +87,12 @@ const columns = [
       
     function returnOrder(order_id, order_status){
         if(order_status === '배송준비중'){
-            ApiService.returnOrder(order_id);
-            alert('주문 취소 요청 됐습니다.');
+            if(window.confirm("정말 주문을 취소하시겠습니까?")){
+                ApiService.returnOrder(order_id);
+                alert('주문 취소 요청 됐습니다.');
+            }else{
+                alert('주문 취소가 취소됐습니다.')
+            }
         }else if(order_status === '취소요청'){
             alert('이미 주문취소 요청을 했습니다.');
         }else if(order_status === '취소완료'){

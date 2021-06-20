@@ -48,7 +48,6 @@ function ProductListComponent(props){
         .catch(err => {
             console.log('findPageNum() Error!', err);
         })
-        
     },[product_pageNum, product_gender, product_category, select_color, select_size, search_keyword, select_option]);
 
     // 옵션 선택시 선택된 name확인 후 해당 값 변경
