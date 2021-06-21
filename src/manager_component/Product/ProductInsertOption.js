@@ -31,14 +31,12 @@ function ProductInsert({productListOpen}) {
     }
 
     useEffect(() => {
-        console.log("getProduct 실행");
         getProduct();
     }, [])
 
     //랜더링시 로컬스토리지에 있는 객체를 가져옴(로컬에있는 객체를 가져올시 json으로 형변환)  
     function getProduct() {
         const products = window.localStorage.getItem('product');
-        console.log(products);
         setProduct({
             product: JSON.parse(products)
         })

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AxiosApiService from '../../AxiosApiService'
 import UserTableBox from './component/UserTableBox';
 import UserStatusTableBody from './component/UserStatusTableBody';
-
+import { useHistory } from "react-router-dom";
 function UserStatus(props) {
     //서버에서 받아올 유저 저장소
     const [users, setUsers] = useState({ user: [] });
@@ -10,7 +10,7 @@ function UserStatus(props) {
     const [searchType, setSearchType] = useState('user_name');
     const [pageNums, setPageNums] = useState(0);
     const [pageOpen,setPageOpen] = useState(true);
-    
+    let history = useHistory();
     function onChangeSearch(e) {
         setKeyword(e.currentTarget.value);
     }
@@ -36,13 +36,12 @@ function UserStatus(props) {
                 setUsers({ user: res.data });
             })
             .catch(err => {
-                props.history.push('/managerDefaultErr');
+                history.push('/managerDefaultErr');
                 console.log('getUserState() Error!', err);
             })
     }
     
     function search() {
-        console.log(searchType, keyword);
         AxiosApiService.userStateSeachList(searchType, keyword)
             .then(res => {
                 setUsers({

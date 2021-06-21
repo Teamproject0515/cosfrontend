@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ManagerHeader from './ManagerHeader'
 import './managerCss/managermain.css'
 import ManagerSidebar from './ManagerSidebar';
@@ -14,8 +14,10 @@ import OrderStatus from './Order/OrderStatus';
 import OrderDetail from './Order/OrderDetail';
 import CancleOrder from './Order/CancleOrder';
 import AxiosApiService from '../AxiosApiService';
-function ManagerPage(props) {
+import { useHistory } from "react-router-dom";
 
+function ManagerPage(props) {
+    const history = useHistory();
     const [productInsert, setProductInsert] = useState(false);
     const [productList, setProductList] = useState(false);
     const [userList, setUserList] = useState(false);
@@ -27,6 +29,15 @@ function ManagerPage(props) {
     const [orderStatus, setOrderStatus] = useState(false);
     const [orderDetail, setOrderDetail] = useState(false);
     const [cancleOrder, setCancleOrder] = useState(false);
+    
+    /*  
+    useEffect(() => {
+        let manager = sessionStorage.getItem("user_role");
+        if(manager !== '1'){
+            history.push('/AccessErr');
+        }
+    }, [])
+    */
 
     //상품삭제 productDetail과 productUpdate에 넣어줌
     const productDelete = (product_id) => {
@@ -45,7 +56,6 @@ function ManagerPage(props) {
         const formData = new FormData();
         for (let i = 0; i < product_img.length; i++) {
             formData.append("file", product_img[i]);
-            console.log("file", product_img[i]);
         }
         const config = {
             headers: {
@@ -57,14 +67,12 @@ function ManagerPage(props) {
         
         })
         .catch(err => {
-            props.history.push('/managerDefaultErr');
+            history.push('/managerDefaultErr');
             console.log('saveImg() Error!', err);
         })
         }
     }
-    const eventError = (e)=>{
-        e.preventdefault();
-    }
+    
     //배송상태변경
     const deliveryStatus=(status,order_id)=>{
         AxiosApiService.stateChange(status,order_id)
@@ -73,7 +81,7 @@ function ManagerPage(props) {
             window.localStorage.removeItem('order_detail_num');
         })
         .catch(err => {
-            props.history.push('/deliveryStatusError')
+            history.push('/deliveryStatusError')
             console.log('deliveryStatus() Error!', err);
         })
         
@@ -230,7 +238,6 @@ function ManagerPage(props) {
         <>
             <ManagerHeader dashBoardOpen={dashBoardOpen} />
             <div className="manager-wapper">
-                <div className="manager_login"><span>관리자 / 로그아웃</span></div>
                 <div class="block"></div>
                 <div className="manager-main">
                     <ManagerSidebar

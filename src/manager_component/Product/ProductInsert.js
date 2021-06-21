@@ -1,11 +1,7 @@
 import React, { useState, useRef } from 'react';
 import '../managerCss/productinsert.css'
-import AxiosApiService from '../../AxiosApiService';
-import { useHistory } from "react-router-dom";
 import CancelIcon from '@material-ui/icons/Cancel';
-import Sidebar from './component/Sidebar';
 function ProductInsert({ productInsertOptionOpen,saveImg }) {
-    let history = useHistory();
     const [product_title, setProduct_title] = useState('');           //제목
     const [product_gender, setProduct_gender] = useState('남자');         //상품성별
     const [product_category, setProduct_category] = useState('상의');     //상품카테고리
@@ -13,7 +9,7 @@ function ProductInsert({ productInsertOptionOpen,saveImg }) {
     const [product_content, setProduct_content] = useState('');       //상품내용
     const [imgPriView, setImgPriView] = useState([]);
     const [imgStr, setImgStr] = useState([]);
-    const [product_img, setProduct_img] = useState([]);             //상품이미지
+    const [product_img, setProduct_img] = useState([{img:0}]);             //상품이미지
     const [product_material, setProduct_material] = useState();
     const [sidebarOpen, setsidebarOpen] = useState(true);
     const imageInput = useRef();
@@ -40,11 +36,9 @@ function ProductInsert({ productInsertOptionOpen,saveImg }) {
         setProduct_material(e.currentTarget.value);
     }
 
-    const ImgDelete = (e, index) => {
-        console.log(index);
-        //imgPriview의 0번째부터 index번째를 추출
-        setImgPriView(imgPriView.slice(0, index));
-        setImgStr(imgStr.slice(0, index));
+    const ImgDelete = (e, priviews,index) => {
+        setImgPriView(imgPriView.filter(priview=>priview.img!==priviews));
+        setImgStr(imgStr.filter(str=>str!==imgStr[index]));
     }
     //받은 이미지 미리보기
     function onImg(e) {
@@ -100,7 +94,7 @@ function ProductInsert({ productInsertOptionOpen,saveImg }) {
                         {imgPriView.map((priview, index) =>
                             <>
                                 <div className="priview_img_index">
-                                    <button className="priview_button" onClick={(e) => ImgDelete(e, index)}><CancelIcon /></button>
+                                    <button className="priview_button" onClick={(e) => ImgDelete(e, priview.img,index)}><CancelIcon /></button>
                                     <img className="priview" src={priview.img} />
                                 </div>
                             </>
@@ -119,8 +113,9 @@ function ProductInsert({ productInsertOptionOpen,saveImg }) {
                         <div className="select-box-div">
                             <label className="selectLabel">성별</label>
                             <select className="select_category" onChange={selectGender} defaultValue="남자">
-                                <option value="남자">남자</option>
-                                <option value="여자">여자</option>
+                                <option value="M">남자</option>
+                                <option value="W">여자</option>
+                                <option value="KID">아동</option>
                             </select>
                         </div>
                         <div className="select-box-div">

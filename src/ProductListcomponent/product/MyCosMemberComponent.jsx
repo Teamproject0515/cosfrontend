@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import {Grid, Button} from '@material-ui/core';
 
-function ProductListComponent(props){
+function MyCosMemberComponent(props){
 
     let user_id = 'suovj140';
     let user_name = '구지훈';
@@ -122,4 +122,4 @@ const centerInfo = {
     fontSize:'11px', textAlign:'left', color:'#999999', maxWidth:'270px'
 }
 
-export default ProductListComponent;
+export default MyCosMemberComponent;

@@ -85,7 +85,6 @@ function ProductUpdate({productListOpen,productDelete,saveImg}) {
                 //,기준으로 배열로 나눔
                 setProductImg({ img: res.data[0].product_img.split(",") });
                 setProducts(productList);
-                console.log(products);
             })
             .catch(err => {
                 history.push('/managerDefaultErr');
@@ -133,13 +132,11 @@ function ProductUpdate({productListOpen,productDelete,saveImg}) {
         }
     }
 
-    const ImgDelete = (e, index) => {
-        console.log(index);
+    const ImgDelete = (e,imgs) => {
         //productImg를 복사
         let prodimg = productImg;
-        //img의 0번부터 index값을 읽어 저장
-        prodimg = prodimg.img.slice(0, index);
-        console.log(productImg);
+        //prodimg가 들어온 이름 값인걸 삭제
+        prodimg = prodimg.img.filter(img=> img !== imgs)
         //productImg.img에 할당
         setProductImg({ img: prodimg });
         //배열을 ,를 붙여 문자화
@@ -155,7 +152,7 @@ function ProductUpdate({productListOpen,productDelete,saveImg}) {
     //옵션추가
     function tablePlus() {
         let insertproducts =[{  
-            product_seq:(products[products.length-1].product_seq)+1,
+            //product_seq:(products[products.length-1].product_seq)+1,
             product_id:products[0].product_id,
             product_title: products[0].product_title,
             product_gender: products[0].product_gender,
@@ -164,31 +161,30 @@ function ProductUpdate({productListOpen,productDelete,saveImg}) {
             product_content: products[0].product_content,
             product_img: products[0].product_img,
             product_material: products[0].product_material,
-            product_size: '',
-            product_color: '',
-            product_stock: '',
+            product_size: 'XS',
+            product_color: 'BLACK',
+            product_stock: '0',
         }]
-        //AxiosApiService.insertProduct(products);
         setProducts(products.concat(insertproducts))
     }
     //옵션삭제
-    const tableMinus = (index) => {
+    const tableMinus = (seq) => {
         if(products.length>1){
-            setProducts(products.slice(0, index));
+                setProducts(products.filter(product => product.product_seq !== seq));
         }else{
             alert('1개 이상 존재해야합니다.');
         }
+        
     }
     return (
         <>
-        <button onClick={()=>console.log(products,productImg)}></button>
             <h1 style={{marginTop:'30px'}}>상품 수정</h1>
             <div className="detail_wapper">
                <Sidebar productImg={productImg} />
                 <div className="detail_img_box">
                     {productImg.img.map((imgs, index) =>
                         <>
-                            <button className="priview_button" onClick={(e) => ImgDelete(e, index)}><CancelIcon /></button>
+                            <button className="priview_button" onClick={(e) => ImgDelete(e,imgs)}><CancelIcon /></button>
                             <img className="detail_img" src={imgUrl + productImg.img[index]} />
                         </>
                     )}

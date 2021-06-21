@@ -8,7 +8,7 @@ import PageNumComponent from './PageNumComponent';
 
 import {Table, TableCell, TableRow, Typography, InputLabel, FormControl, Grid} from '@material-ui/core';
 
-function ProductListComponent(props){
+function ProductListSearchComponent(props){
 
     const imgUrl = '/imgs/';
 
@@ -158,4 +158,4 @@ function ProductListComponent(props){
 
 
 
-export default ProductListComponent;
+export default ProductListSearchComponent;

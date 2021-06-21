@@ -38,11 +38,19 @@ function InsertOptionComponent({product,productOptions,tablePlus,tableMinus,onSi
                                     </TableCell>
                                     <TableCell align="left">
                                         <Select onChange={(e) => onColor(e, index)}>
-                                            <option value="BLACK">BLACK</option >
-                                            <option value="WHITE">WHITE</option >
-                                            <option value="BLUE">BLUE</option >
-                                            <option value="GRAY">GRAY</option >
-                                            <option value="YELLOW">YELLOW</option >
+                                            <option style={{backgroundColor:'BLACK',color:'white',marginBottom:'5px'}} value="BLACK">BLACK</option >
+                                            <option style={{backgroundColor:'GRAY',color:'white',marginBottom:'5px'}} value="GRAY">GRAY</option >
+                                            <option style={{backgroundColor:'Silver',color:'white',marginBottom:'5px'}} value="Silver">Silver</option >
+                                            <option style={{backgroundColor:'DarkRed',color:'white',marginBottom:'5px'}} value="DarkRed">DarkRed</option >
+                                            <option style={{backgroundColor:'FireBrick',color:'white',marginBottom:'5px'}} value="FireBrick">FireBrick</option >
+                                            <option style={{backgroundColor:'RED',color:'white',marginBottom:'5px'}} value="RED">RED</option >
+                                            <option style={{backgroundColor:'WHITE',color:'black',marginBottom:'5px'}} value="WHITE">WHITE</option >
+                                            <option style={{backgroundColor:'BLUE',color:'white',marginBottom:'5px'}} value="BLUE">BLUE</option >
+                                            <option style={{backgroundColor:'MediumSlateBlue',color:'white',marginBottom:'5px'}} value="MediumSlateBlue">MediumSlateBlue</option >
+                                            <option style={{backgroundColor:'SkyBlue',color:'white',marginBottom:'5px'}} value="SkyBlue">SkyBlue</option >
+                                            <option style={{backgroundColor:'Gold',color:'black',marginBottom:'5px'}} value="Gold">Gold</option >
+                                            <option style={{backgroundColor:'YELLOW',color:'black',marginBottom:'5px'}} value="YELLOW">YELLOW</option >
+                                            <option style={{backgroundColor:'Khaki',color:'black',marginBottom:'5px'}} value="Khaki">Khaki</option >
                                         </Select>
                                     </TableCell>
 

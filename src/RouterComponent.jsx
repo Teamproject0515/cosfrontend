@@ -1,13 +1,13 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ProductListCategoryComponent from "./ProductListComponent/product/ProductListCategoryComponent";
-import ProductListSearchComponent from "./ProductListComponent/product/ProductListSearchComponent";
-import ProductDetailComponent from "./ProductListComponent/product/Product_Info_Component";
+import ProductListCategoryComponent from "./ProductListcomponent/product/ProductListCategoryComponent";
+import ProductListSearchComponent from "./ProductListcomponent/product/ProductListSearchComponent";
+import ProductDetailComponent from "./ProductListcomponent/product/Product_Info_Component";
 
 import MainComponent from "./Maincomponent/Main";
 
-import ProductListAccessoryComponent from "./ProductListComponent/product/ProductListAccessoryComponent";
-import ProductNewArrivalsComponent from "./ProductListComponent/product/ProductNewArrivalsComponent";
+import ProductListAccessoryComponent from "./ProductListcomponent/product/ProductListAccessoryComponent";
+import ProductNewArrivalsComponent from "./ProductListcomponent/product/ProductNewArrivalsComponent";
 
 import MYCOSPage from './MYCOSComponent/MYCOSPage';
 import ManagerPage from './manager_component/ManagerPage';
@@ -17,6 +17,7 @@ import SignUpError from "./errComponent/SignUpError"
 import ProductInsertError from "./errComponent/ProductInsertError"
 import DeliveryStatusError from "./errComponent/DeliveryStatusError"
 import ManagerDefaultErr from "./errComponent/ManagerDefaultErr"
+import AccessErr from "./errComponent/AccessErr"
 
 import LoginFromCompoment from "./Login/LoginFromCompoment";
 import FindIDComponent from "./Login/FindIDComponent";
@@ -76,7 +77,7 @@ const AppRouter = () => {
                         <Route path="/productInsertError" component={ProductInsertError} />
                         <Route path="/deliveryStatusError" component={DeliveryStatusError} />
                         <Route path="/managerDefaultErr" component={ManagerDefaultErr} />
-                        
+                        <Route path="/accessErr" component={AccessErr} />
                     </Switch>
         </div>
     );

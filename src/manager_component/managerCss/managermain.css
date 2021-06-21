@@ -55,10 +55,16 @@
     background-color: #FFFFFF;
 }
 .manager_login{
-    width: 90%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
+    font-size: 13px;
+    position: fixed;
+    left: 88%;
+}
+.userPageLink{
+    text-decoration-line:none;
+    font-size: 13px;
+    right: 83%;
+    position: fixed;
+    color: black;
 }
 .pageTitle{
     width:100%;

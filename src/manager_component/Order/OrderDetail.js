@@ -18,7 +18,6 @@ function OrderDetail({deliveryStatus }) {
     const getOrderDetail = () => {
         let order_detail_num = window.localStorage.getItem('order_detail_num');
         let user_email = window.localStorage.getItem('user_email');
-        console.log(order_detail_num, user_email);
         AxiosApiService.orderDetail(order_detail_num, user_email)
             .then(res => {
                 setOrders({ order: res.data });
@@ -31,7 +30,6 @@ function OrderDetail({deliveryStatus }) {
     }
     return (
         <>
-
             <h1 style={{ marginTop: '30px' }}>주문 상세</h1>
             <div style={{ width: '100%', marginTop: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 

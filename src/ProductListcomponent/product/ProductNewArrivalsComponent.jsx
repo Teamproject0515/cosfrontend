@@ -11,7 +11,7 @@ import NewArrivalsComponent from './NewArrivalsComponent';
 
 import {Table, TableCell, TableRow, Typography, InputLabel, MenuItem, Select, FormControl, Grid, TextField} from '@material-ui/core';
 
-function ProductListComponent(props){
+function ProductNewArrivalsComponent(props){
 
     let [products, setproducts ] = useState([]);
     let [product_pageNum, setproduct_pageNum] = useState(1);
@@ -237,4 +237,4 @@ function ProductListComponent(props){
 // }
 
 
-export default ProductListComponent;
+export default ProductNewArrivalsComponent;

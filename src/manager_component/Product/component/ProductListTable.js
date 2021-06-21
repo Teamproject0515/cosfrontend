@@ -56,7 +56,6 @@ function ProductListTable({products,onKeyPress,onChangeSearch,search,returnProdu
                         </TableRow>
                     )}
                 </TableBody>
-                <button onClick={()=>console.log(products)}></button>
             </Table>  
         </>
     )
