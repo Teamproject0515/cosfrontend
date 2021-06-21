@@ -57,7 +57,6 @@ function OrderStatus({orderDetailOpen }) {
     }
 
     function search() {
-        console.log(searchType, keyword);
         AxiosApiService.orderStatusSearch(searchType, keyword)
             .then(res => {
                 setOrders({

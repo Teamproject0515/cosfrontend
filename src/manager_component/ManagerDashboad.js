@@ -7,7 +7,6 @@ function ManagerDashboad() {
 
     useEffect(() => {
         reloadCnt();
-        console.log(managerItems);
     }, [])
 
     function reloadCnt() {
@@ -27,21 +26,21 @@ function ManagerDashboad() {
                 <div className="dashboard_wapper">
                     <div className="dashboard_row">
                         <div className="Cnt" >
-                            <h2>상품개수</h2><br />
+                            <h2>상품개수</h2>
                             <h1>{items.product_cnt}</h1>
                         </div>
                         <div className="Cnt" >
-                            <h2>유저수</h2><br />
+                            <h2>유저수</h2>
                             <h1>{items.user_cnt}</h1>
                         </div>
                     </div>
                     <div className="dashboard_row">
                         <div className="Cnt" >
-                            <h2>주문개수</h2><br />
+                            <h2>주문개수</h2>
                             <h1>{items.order_cnt}</h1>
                         </div>
                         <div className="Cnt" >
-                            <h2>취소요청</h2><br />
+                            <h2>취소요청</h2>
                             <h1>{items.cancel_order_cnt}</h1>
                         </div>
                     </div>

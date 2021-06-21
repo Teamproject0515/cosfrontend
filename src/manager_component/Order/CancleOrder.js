@@ -8,6 +8,7 @@ function CancleOrder({deliveryStatus}) {
     const [orders,setOrders] = useState({order:[]});
     const [pageNums,setPageNums] = useState(0);
     let history = useHistory();
+    
     //새로고침시에만 실행
     useEffect(()=>{
         getCancleOrder(0);

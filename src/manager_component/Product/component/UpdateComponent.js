@@ -56,7 +56,7 @@ function UpdateComponent({products,onTitle,onPrice,onMaterial,selectGender,
                             <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                                 <p style={{ marginBottom: '10px', fontWeight: '600', textAlign: 'left' }}>색상</p>
                                 <button className='optionPage' style={{ width: '40%', marginLeft: '5px', marginTop: '1px', height: '70%', fontSize: '5px' }}
-                                    onClick={() => tableMinus(index)}>삭제</button>
+                                    onClick={() => tableMinus(products[index].product_seq)}>삭제</button>
                             </div>
                             <select className='update_selectbox' onChange={(e) => onColor(e, index)} >
                                 <option value="BLACK">BLACK</option >

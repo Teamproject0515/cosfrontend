@@ -9,7 +9,7 @@ import PageNumComponent from './PageNumComponent';
 
 import {Table, TableCell, TableRow, Typography, InputLabel, FormControl, Grid} from '@material-ui/core';
 
-function ProductListComponent(props){
+function ProductListCategoryComponent(props){
     const imgUrl = '/imgs/';
     let [products, setproducts ] = useState([]);
     let [product_pageNum, setproduct_pageNum] = useState(1);
@@ -186,4 +186,4 @@ function ProductListComponent(props){
 
 
 
-export default ProductListComponent;
+export default ProductListCategoryComponent;

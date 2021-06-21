@@ -3,7 +3,7 @@ import AxiosApiService from '../../AxiosApiService';
 import ProductListTable from './component/ProductListTable'
 import { useHistory } from "react-router-dom";
 
-function ProductList({ props,productDetailOpen }) {
+function ProductList({productDetailOpen }) {
     const [products, setProducts] = useState({ product: [0] });
     const [product_title, setProduct_title] = useState('');
     const [pageNums, setPageNums] = useState(0);
@@ -31,7 +31,6 @@ function ProductList({ props,productDetailOpen }) {
                 res.data.map((data, index) => {
                     //만약 res.data[index]에 product_img를 가져올때 문자열에 ,가 있으면 아래 로직 실행
                     if (res.data[index].product_img.includes(',')) {
-                        console.log(res.data[index].product_img);
                         //product_img안에 ,가 몇번째에 있는지 저장
                         let idx = res.data[index].product_img.indexOf(',');
                         //product_img 문자열 0번째부터 ,를 기준으로 배열로 나눔
@@ -62,13 +61,11 @@ function ProductList({ props,productDetailOpen }) {
             })
     }
     const getProductList = (pageNum) => {
-        console.log(pageNum);
         AxiosApiService.getProductList(pageNum)
             .then(res => {
                 res.data.map((data, index) => {
                     //만약 res.data[index]에 product_img를 가져올때 문자열에 ,가 있으면 아래 로직 실행
                     if (res.data[index].product_img.includes(',')) {
-                        console.log(res.data[index].product_img);
                         //product_img안에 ,가 몇번째에 있는지 저장
                         let idx = res.data[index].product_img.indexOf(',');
                         //product_img 문자열 0번째부터 ,를 기준으로 배열로 나눔
@@ -92,7 +89,6 @@ function ProductList({ props,productDetailOpen }) {
     function returnProductDetail(seq) {
         //로컬스토리지 저장
         window.localStorage.setItem("product_seq", seq);
-        console.log(seq);
         productDetailOpen();
     }
     

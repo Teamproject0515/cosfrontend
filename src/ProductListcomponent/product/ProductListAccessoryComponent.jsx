@@ -4,7 +4,7 @@ import ace01 from '../images/ace01.jpg';
 
 import {Table, TableCell, TableRow, Typography, InputLabel, FormControl, Grid } from '@material-ui/core';
 
-function ProductListComponent(props){
+function ProductListAccessoryComponent(props){
     const imgUrl = '/imgs/';
 
     let [products, setproducts ] = useState([]);
@@ -138,4 +138,4 @@ function ProductListComponent(props){
 
 
 
-export default ProductListComponent;
+export default ProductListAccessoryComponent;

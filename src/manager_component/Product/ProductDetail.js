@@ -11,12 +11,7 @@ function ProductDetail({productUpdateOptionOpen, productDelete }) {
     const [productImg, setProductImg] = useState({ img: [] });
     const imgUrl = "/imgs/";
 
-    /*
-    window.onpopstate = (e)=>{
-       if(window.history.back()){
-        productListOpen();
-       }
-    }*/
+   
     useEffect(() => {
         getProductDetail()
     }, [])

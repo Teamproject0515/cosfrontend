@@ -4,7 +4,6 @@ import DaumPostcode from 'react-daum-postcode';
 import '../css/signUp.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Banner from '../../Maincomponent/Banner';
-import Footer from '../../Maincomponent/Footer';
 import { Modal, Backdrop, Fade } from '@material-ui/core';
 import SignUpBox from './SignUpBox';
 
@@ -113,6 +112,7 @@ function SignUp(props) {
         //객체에 담은 값들을 백엔드로 전송 axios로
         AxiosApiService.insertUser(user)
             .then(res => {
+                alert('환영합니다.');
                 props.history.push('/'); //입력성공시 이동
             })
             .catch(err => {
