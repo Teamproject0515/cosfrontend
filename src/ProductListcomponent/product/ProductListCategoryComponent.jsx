@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import ApiService from "../../ApiService";
-import img01 from '../images/01_pre.jpg';
-import { Link } from 'react-router-dom';
 import SelectOptionComponenttest from './SelectOptionComponent';
 import SortByComponent from './SortByComponent';
 import OptionResetComponent from './OptionResetComponent';
@@ -10,16 +8,16 @@ import PageNumComponent from './PageNumComponent';
 
 import {Table, TableCell, TableRow, Typography, InputLabel, FormControl, Grid} from '@material-ui/core';
 
-function ProductListComponent(props){
+function ProductListCategoryComponent(props){
     const imgUrl = '/imgs/';
     let [products, setproducts ] = useState([]);
     let [product_pageNum, setproduct_pageNum] = useState(1);
-    let [product_gender, setproduct_gender] = useState(window.localStorage.getItem("selectGender"));
+    let [product_gender] = useState(window.localStorage.getItem("selectGender"));
     let [product_category, setproduct_category] = useState(null);
     let [select_color, setselect_color] = useState(null);
     let [select_size, setselect_size] = useState(null);
     let [total_pageNum, settotal_pageNum] = useState(1);
-    let [search_keyword, setsearch_keyword] = useState(null);
+    let [search_keyword] = useState(null);
     let [select_option, setselect_option] = useState(window.localStorage.getItem("selectOption"));
 
     const ProductVO = {
@@ -107,12 +105,11 @@ function ProductListComponent(props){
                     <Typography variant ="h5" style={{marginTop:'30px'}}>Clothing Items</Typography>
                         
                     <div>
-                        <FormControl style={{minWidth:'80px'}}>
-                            <button variant="contained" style={{border:'0px'}} onClick = {() => {selectCategoryList(null)}}><InputLabel>Clothing</InputLabel></button>
-                            {/* </a> */}
+                        <FormControl style={{minWidth:'80px', border:'0px'}}>
+                            <button style={{border:'0px', backgroundColor:'white'}} onClick = {() => {selectCategoryList(null)}}><InputLabel>Clothing</InputLabel></button>
                         </FormControl>
-                        <FormControl style={{minWidth:'80px'}}>
-                            <button variant="contained" style={{border:'0px'}} onClick = {() => {selectAccessoryList('악세사리')}}><InputLabel>Accessories</InputLabel></button>
+                        <FormControl style={{minWidth:'80px', border:'0px'}}>
+                            <button style={{border:'0px', backgroundColor:'white'}} onClick = {() => {selectAccessoryList('악세사리')}}><InputLabel>Accessories</InputLabel></button>
                         </FormControl>
                     </div>
 
@@ -145,22 +142,19 @@ function ProductListComponent(props){
 
                     {/* 바디 */}
                     {products.map(product =>
-                <Grid item xs={6} sm={4} style={{margin:'0px'}}>
-                    <Table style={{marginBottom:'30px'}}>     
-                        <div align="right" onClick = {() => {Productinfo(product.product_id)}}>
+                <Grid item xs={6} sm={4} style={{margin:'0px', marginBottom:'30px'}} onClick = {() => {Productinfo(product.product_id)}}>
+                    {/*<Table style={{marginBottom:'30px'}} onClick = {() => {Productinfo(product.product_id)}}>     */}
                             <TableRow key={product.product_id}>
-                                <TableCell component="th" scope="product" style={{border:'0px', padding:'0px'}}> 
-                                    <img /*src={img01}*/src={imgUrl+product.imgs[0]} style={{width:'100%'}}/>
-                                </TableCell>
+                                    <img src={imgUrl+product.imgs[0]} style={{width:'100%'}}/>
                             </TableRow>
                             <TableRow>
-                                <TableCell alingn="right" style={{border:'0px'}}>{ product.product_title }</TableCell>
+                                <TableCell style={{border:'0px'}}>{ product.product_title }</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell alingn="right" style={{border:'0px'}}>{ product.product_price }</TableCell>
+                                <TableCell style={{border:'0px'}}>{ product.product_price }</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell alingn="right" style={{border:'0px'}}>
+                                <TableCell style={{border:'0px'}}>
 
                                     {/* product안의 color배열을 다시 map해서 출력하는 것 */}
                                     {product.colorSet.map(color=>
@@ -170,11 +164,10 @@ function ProductListComponent(props){
                                     )}
                                 </TableCell>
                             </TableRow>
-                        </div>
-                    </Table>
+                        {/*</div>*/}
+                    {/*</Table>*/}
                 </Grid>
                     )}     
-
             </Grid>
         </div>
     )
@@ -183,4 +176,4 @@ function ProductListComponent(props){
 
 
 
-export default ProductListComponent;
+export default ProductListCategoryComponent;

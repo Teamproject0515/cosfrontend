@@ -4,7 +4,7 @@ import React from 'react';
 import {InputLabel, MenuItem, Select, FormControl} from '@material-ui/core';
 
 
-function ProductListComponent(props){
+function SortByComponent(props){
 
     return (
             <>
@@ -24,4 +24,4 @@ function ProductListComponent(props){
 
 
 
-export default ProductListComponent;
+export default SortByComponent;

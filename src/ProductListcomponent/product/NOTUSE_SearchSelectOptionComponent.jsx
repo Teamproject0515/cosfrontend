@@ -4,7 +4,7 @@ import React from 'react';
 import {InputLabel, MenuItem, Select, FormControl} from '@material-ui/core';
 
 
-function ProductListComponent({selectOption, selectPageNumDown, selectPageNumUp}){
+function NOTUSE_SearchSelectOptionComponent({selectOption, selectPageNumDown, selectPageNumUp}){
 
     return (
             <div>
@@ -68,4 +68,4 @@ function ProductListComponent({selectOption, selectPageNumDown, selectPageNumUp}
 
 
 
-export default ProductListComponent;
+export default NOTUSE_SearchSelectOptionComponent;

@@ -4,18 +4,18 @@ import ace01 from '../images/ace01.jpg';
 
 import {Table, TableCell, TableRow, Typography, InputLabel, FormControl, Grid } from '@material-ui/core';
 
-function ProductListComponent(props){
+function ProductListAccessoryComponent(props){
     const imgUrl = '/imgs/';
 
     let [products, setproducts ] = useState([]);
     let [product_pageNum, setproduct_pageNum] = useState(1);
-    let [product_gender, setproduct_gender] = useState(window.localStorage.getItem("selectGender"));
-    let [product_category, setproduct_category] = useState(window.localStorage.getItem("selectCategory"));
-    let [select_color, setselect_color] = useState(null);
-    let [select_size, setselect_size] = useState(null);
+    let [product_gender] = useState(window.localStorage.getItem("selectGender"));
+    let [product_category] = useState(window.localStorage.getItem("selectCategory"));
+    let [select_color] = useState(null);
+    let [select_size] = useState(null);
     let [total_pageNum, settotal_pageNum] = useState(1);
-    let [search_keyword, setsearch_keyword] = useState(null);
-    let [select_option, setselect_option] = useState(window.localStorage.getItem("selectOption"));
+    let [search_keyword] = useState(null);
+    let [select_option] = useState(window.localStorage.getItem("selectOption"));
 
     const ProductVO = {
         product_pageNum,
@@ -138,4 +138,4 @@ function ProductListComponent(props){
 
 
 
-export default ProductListComponent;
+export default ProductListAccessoryComponent;

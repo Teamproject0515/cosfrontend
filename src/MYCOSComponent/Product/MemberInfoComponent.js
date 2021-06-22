@@ -268,9 +268,9 @@ function MemberInfoComponent(props) {
 
                     <div style={spaceBetween}><span>환불계좌/현금영수증</span> <span><button name="user_account_insert" onClick={handleOpen} style={{border:'0px', fontSize:'12px', borderRadius:'0px', color:'gray', backgroundColor:'white'}}>더보기</button></span></div>
                     <hr style={bottomHr}/>
-
-                    <div style={spaceBetween}><span>개인계정 연결관리</span> <span><button name="user_sns_connect" onClick={handleOpen} style={{border:'0px', fontSize:'12px', borderRadius:'0px', color:'gray', backgroundColor:'white'}}>더보기</button></span></div>
-                    <hr style={bottomHr}/>
+{/* 
+                    <div styleㅛ={spaceBetween}><span>개인계정 연결관리</span> <span><button name="user_sns_connect" onClick={handleOpen} style={{border:'0px', fontSize:'12px', borderRadius:'0px', color:'gray', backgroundColor:'white'}}>더보기</button></span></div>
+                    <hr style={bottomHr}/> */}
 
                     <div style={spaceBetween}><span>회원탈퇴</span> <span><button name="user_delete" onClick={handleOpen} style={{border:'0px', fontSize:'12px', borderRadius:'0px', color:'gray', backgroundColor:'white'}}>신청</button></span></div>
                     <hr style={bottomHr}/>

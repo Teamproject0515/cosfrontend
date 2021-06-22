@@ -18,9 +18,9 @@ class ApiService {
     }
 
     // 해당 상품 선택시 맞는 값 받아오기
-    fetchProductByID(productID){
-        return axios.get(PRODUCT_API_BASE_URL + '/' + productID);
-    }
+//    fetchProductByID(productID){
+//        return axios.get(PRODUCT_API_BASE_URL + '/' + productID);
+//    }
 
 
     // 해당 유저 정보 출력하기
@@ -92,6 +92,24 @@ class ApiService {
     selectOrderDetailInfo(order_id){
         return axios.get(ORDER_API_BASE_URL+'/selectorderdetailinfo/'+order_id);
     }
+
+    // 대승
+
+    //상품 출력
+    ProductByID(id){
+        return axios.get(PRODUCT_API_BASE_URL + '/' + id);
+    }
+    
+    //장바구니 저장
+    addCart(cart){
+        return axios.post(PRODUCT_API_BASE_URL, cart);
+    }
+
+
+
+
+
+
 }
 
 export default new ApiService();

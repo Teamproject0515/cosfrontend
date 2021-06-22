@@ -8,18 +8,18 @@ import PageNumComponent from './PageNumComponent';
 
 import {Table, TableCell, TableRow, Typography, InputLabel, FormControl, Grid} from '@material-ui/core';
 
-function ProductListComponent(props){
+function ProductListSearchComponent(props){
 
     const imgUrl = '/imgs/';
 
     let [products, setproducts ] = useState([]);
     let [product_pageNum, setproduct_pageNum] = useState(1);
-    let [product_gender, setproduct_gender] = useState(null);
+    let [product_gender] = useState(null);
     let [product_category, setproduct_category] = useState(null);
     let [select_color, setselect_color] = useState(null);
     let [select_size, setselect_size] = useState(null);
     let [total_pageNum, settotal_pageNum] = useState(1);
-    let [search_keyword, setsearch_keyword] = useState(window.localStorage.getItem("search_keyword"));
+    let [search_keyword] = useState(window.localStorage.getItem("search_keyword"));
     let [select_option, setselect_option] = useState(null);
 
     const ProductVO = {
@@ -48,7 +48,6 @@ function ProductListComponent(props){
         .catch(err => {
             console.log('findPageNum() Error!', err);
         })
-        
     },[product_pageNum, product_gender, product_category, select_color, select_size, search_keyword, select_option]);
 
     // 옵션 선택시 선택된 name확인 후 해당 값 변경
@@ -159,4 +158,4 @@ function ProductListComponent(props){
 
 
 
-export default ProductListComponent;
+export default ProductListSearchComponent;
