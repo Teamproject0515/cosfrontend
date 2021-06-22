@@ -22,7 +22,7 @@ function ProductInfoComponent(props){
     배송에 대한 자세한 내용은 여기를 클릭하십시오.<br/>
     우리의 반품 및 환불 정책에 대한 자세한 내용은 여기를 참조하십시오.<br/><br/>
     일부 군사지역은 배송이 불가능할 수 있습니다.<br/><br/>
-    위생상의 이유로 속옷 및 이어링 제품은 반품이 불가합니다. (결함의 경우 제외)</p>;
+    위생상의 이유로 속옷 및 이어링 제품은 반품이 불가합니다. (결함의 경우 제외)bhjfkgfykgyugj</p>;
 
     const [product, setproduct] = useState([]);
     const [product_info, setproduct_info]  = useState(text);
