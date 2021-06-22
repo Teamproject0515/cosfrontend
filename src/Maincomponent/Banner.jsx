@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
 
-import { IconButton, TextField, Modal, Backdrop, Fade, makeStyles, Button, Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, Grid } from "@material-ui/core";
+import { IconButton, TextField, Button, Drawer} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-
 
 
 import Logo from "./images/cosmos.png";
@@ -44,7 +43,7 @@ function Banner(props) {
 
     function selectCategoryList(value) {
         window.localStorage.setItem("selectGender", value);
-        // window.location.reload(); // 메인페이지를 제외하고 다른 페이지를 클릭했을 때, 주소값만 변하고 새로고침이 되지 않아서 reload시킴 - 다른 방법이 있을 것 같음
+        window.location.reload();
     }
 
     function selectMyCos() {
@@ -55,6 +54,7 @@ function Banner(props) {
     //로그인 버튼 / 로그아웃 버튼 설정
     const [loginBtn, setLoginBtn] = useState('login');
     const [loginCheck, setLoginCheck] = useState(false);
+    
     //쿠키 값으로 session 확인 후 Boolean 값 받아서 버튼 이름 변경
     useEffect(() => {
         ApiServiceLogin.checkSession()
@@ -98,10 +98,6 @@ function Banner(props) {
     const managerPage = ()=>{
         history.push('/manager');
     }
-    //    function cosMain(){
-    //        props.history.push("/");
-    //        window.location.reload();
-    //    }
 
     return (
         <>

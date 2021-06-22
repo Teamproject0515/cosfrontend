@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import ApiService from "../../ApiService";
-import img01 from '../images/01_pre.jpg';
 import SelectOptionComponenttest from './SelectOptionComponent';
 import SortByComponent from './SortByComponent';
 import OptionResetComponent from './OptionResetComponent';
@@ -13,12 +12,12 @@ function ProductListCategoryComponent(props){
     const imgUrl = '/imgs/';
     let [products, setproducts ] = useState([]);
     let [product_pageNum, setproduct_pageNum] = useState(1);
-    let [product_gender, setproduct_gender] = useState(window.localStorage.getItem("selectGender"));
+    let [product_gender] = useState(window.localStorage.getItem("selectGender"));
     let [product_category, setproduct_category] = useState(null);
     let [select_color, setselect_color] = useState(null);
     let [select_size, setselect_size] = useState(null);
     let [total_pageNum, settotal_pageNum] = useState(1);
-    let [search_keyword, setsearch_keyword] = useState(null);
+    let [search_keyword] = useState(null);
     let [select_option, setselect_option] = useState(window.localStorage.getItem("selectOption"));
 
     const ProductVO = {
@@ -97,8 +96,6 @@ function ProductListCategoryComponent(props){
         props.history.push('/accessories-list')
     }
 
-    const [isHover, setIsHover] = useState(0);
-
     return (
         <div style={{display:'flex', alignItems:'center', textAlign:'center', justifyContent:'center'}}>
             <Grid container spacing={3} style={{ paddingLeft:'10px', paddingRight:'10px', minHeight:'800px', width:'100%', maxWidth:'1560px'}}>
@@ -147,14 +144,8 @@ function ProductListCategoryComponent(props){
                     {products.map(product =>
                 <Grid item xs={6} sm={4} style={{margin:'0px', marginBottom:'30px'}} onClick = {() => {Productinfo(product.product_id)}}>
                     {/*<Table style={{marginBottom:'30px'}} onClick = {() => {Productinfo(product.product_id)}}>     */}
-                        {/*<div onClick = {() => {Productinfo(product.product_id)}}>*/}
                             <TableRow key={product.product_id}>
-                                    <img /*src={img01}*/ src={imgUrl+product.imgs[isHover]} style={{width:'100%'}}
-
-                                       // onMouseOver={(event) =>{ setIsHover(1) } }
-                                       // onMouseOut={(event) => { setIsHover(0) } }
-                                    
-                                    />
+                                    <img src={imgUrl+product.imgs[0]} style={{width:'100%'}}/>
                             </TableRow>
                             <TableRow>
                                 <TableCell style={{border:'0px'}}>{ product.product_title }</TableCell>
@@ -177,7 +168,6 @@ function ProductListCategoryComponent(props){
                     {/*</Table>*/}
                 </Grid>
                     )}     
-
             </Grid>
         </div>
     )

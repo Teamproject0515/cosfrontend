@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import ProductListCategoryComponent from "./ProductListcomponent/product/ProductListCategoryComponent";
 import ProductListSearchComponent from "./ProductListcomponent/product/ProductListSearchComponent";
 import ProductDetailComponent from "./ProductListcomponent/product/Product_Info_Component";
