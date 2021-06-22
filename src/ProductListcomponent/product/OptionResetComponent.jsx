@@ -4,7 +4,7 @@ import React from 'react';
 import {InputLabel, FormControl} from '@material-ui/core';
 
 
-function OptionResetComponent(props){
+function OptionResetComponent(){
 
     return (
         <>

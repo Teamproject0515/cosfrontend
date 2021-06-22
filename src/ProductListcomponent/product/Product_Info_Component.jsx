@@ -6,13 +6,9 @@ import {useHistory } from "react-router-dom";
 import '../css/product_info.css';
 
 
-import dlalwl from "../images/01.jpg"
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import {Grid, Button} from '@material-ui/core';
+import {Select, FormControl, InputLabel, Button} from "@material-ui/core";
 
-function ProductInfoComponent(props){
+function ProductInfoComponent(){
 
     const imgUrl = '/imgs';
     const text = <p>영업일 기준 1~3일 내 배송<br/>
@@ -121,7 +117,6 @@ function ProductInfoComponent(props){
                     </div>
                     <div className = "img_main" >
                         {setimgs[0] && setimgs[0].map(img => {return  <img src = {imgUrl + '/' + img} style = {{width: "600px", height: "800px"}}/> })} 
-                        <img src = {dlalwl} style = {{width: "600px", height: "800px"}}/>
                     </div> 
                 </div>
                 
