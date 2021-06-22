@@ -2,18 +2,13 @@ import React, { useState, useEffect} from 'react';
 import ApiService from "../../ApiService";
 import Modal from "./Product_Info_Modal";
 import {useHistory } from "react-router-dom";
-import ModalLoginForm from "../../Login/ModalLoginForm";
 
 import '../css/product_info.css';
 
 
-import dlalwl from "../images/01.jpg"
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import {Grid, Button} from '@material-ui/core';
+import {Select, FormControl, InputLabel, Button} from "@material-ui/core";
 
-function ProductInfoComponent(props){
+function ProductInfoComponent(){
 
     const imgUrl = '/imgs';
     const text = <p>영업일 기준 1~3일 내 배송<br/>
@@ -22,42 +17,18 @@ function ProductInfoComponent(props){
     배송에 대한 자세한 내용은 여기를 클릭하십시오.<br/>
     우리의 반품 및 환불 정책에 대한 자세한 내용은 여기를 참조하십시오.<br/><br/>
     일부 군사지역은 배송이 불가능할 수 있습니다.<br/><br/>
-    위생상의 이유로 속옷 및 이어링 제품은 반품이 불가합니다. (결함의 경우 제외)bhjfkgfykgyugj</p>;
+    위생상의 이유로 속옷 및 이어링 제품은 반품이 불가합니다. (결함의 경우 제외)</p>;
 
     const [product, setproduct] = useState([]);
     const [product_info, setproduct_info]  = useState(text);
     const [productop, setproductop] = useState([]);
     const [productcart, setproductcart] = useState();
+    const [ modalOpen, setModalOpen ] = useState(false);
     const setcolor = Array.from(new Set(product && product.map(option => option.product_color )));
     const setimgs = Array.from(new Set(product && product.map(option => option.imgs)));
     const history = useHistory(); 
     let shopcart;
     let prop = [];
-
-
-    //장바구니 모달////////
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const openModal = () => {
-        setModalOpen(true);
-    }
-    
-
-    const closeModal = () => {
-        setModalOpen(false);
-    }
-
-    /////////로그인 모달////////
-    const [modalLoginOpen, setModalLoginOpen] = useState(false);
-
-    const openloginModal= () =>{
-        setModalLoginOpen(true);
-    }
-
-    const closeloginModal= ()=>{
-        setModalLoginOpen(false);
-    }
-    ////////////////////////////yarns
 
     //상품 불러오기
     useEffect( () => {
@@ -99,15 +70,17 @@ function ProductInfoComponent(props){
                 console.log("savecart 에러",err);
             });
         
-            openModal();
+            setModalOpen(true);
         }
         else{
-            //history.push("/signIn");
-            openloginModal();
+            history.push("/signIn");
         }
             
     }
 
+    const closeModal = () => {
+        setModalOpen(false);
+    }
 
     //색상 변경
     function changcolor(e){  
@@ -123,9 +96,8 @@ function ProductInfoComponent(props){
 
         return  <div className ="radiosize">
                     {Esize.map(tsize => 
-                        {return <div style ={{marginRight: "5%"}}>
-                            <input type ="radio" id = {tsize}  name = "productsize" value = {tsize || ''} onChange ={chang} disabled = {!(op && op.some(size => {if(size.product_size === tsize && size.product_stock !== 0) return true; else return false;}))}/>
-                            <label  for = {tsize}>{tsize}</label>  
+                        {return <div><input type ="radio"  name = "productsize" value = {tsize || ''} onChange ={chang} disabled = {!(op && op.some(size => {if(size.product_size === tsize && size.product_stock !== 0) return true; else return false;} ))} />
+                         <label>{tsize}</label>  
                         </div>
                         })
                     }  
@@ -173,22 +145,18 @@ function ProductInfoComponent(props){
                                         <Button variant="contained" type = "submit" onClick = {savecart} disabled = {productcart == null} style = {{width : "450px"}}>장바구니</Button>
                                     </div>
                                     <div className = "closeevent"  onClick ={closeModal}>
-                                        <Modal open={ modalOpen } close={ closeModal } header="Success">
+                                        <Modal open={ modalOpen } close={ closeModal } header="장바구니 담기 성공">
                                             <div className = "modal_info">
-                                                <div style = {{marginRight : "10%"}} className = "modal_img">
-                                                    <img src = {imgUrl + '/' + productcart?.imgs[0]} style = {{width: "60px", height: "80px"}}/>
-                                                </div>
                                                 <div className = "modal_info_datail">
+                                                    <img src = {imgUrl + '/' + productcart?.imgs[0]} style = {{width: "60px", height: "80px"}}/><br/>
                                                     상품명 : {productcart?.product_title}<br/>
                                                     가격 : {productcart?.product_price}원<br/>
                                                     <div style = {{display: "flex"}}> 색상 : <div style = {{width: "10px", height: "10px", backgroundColor : productcart?.product_color, margin : "2%"}}></div>{productcart?.product_color}</div>
-                                                    사이즈 : {productcart?.product_size}<br/>                                                   
+                                                    사이즈 : {productcart?.product_size}<br/>
+                                                    
                                                 </div>
                                             </div>
                                         </Modal>
-                                    </div>
-                                    <div>
-                                        <ModalLoginForm open={modalLoginOpen} close={closeloginModal}></ModalLoginForm>        
                                     </div>
                                 </FormControl>
                             </div>

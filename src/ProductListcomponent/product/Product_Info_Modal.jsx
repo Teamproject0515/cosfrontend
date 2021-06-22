@@ -29,8 +29,8 @@ function Modal( props ){
                         {props.children}
                     </main>
                     <footer>
-                        <Button variant="contained" className="close" onClick={continueshop}> continue </Button>
-                        <Button variant="contained" className="close" onClick={order}> pay </Button>
+                        <Button className="close" onClick={continueshop}> 쇼핑하기 </Button>
+                        <Button className="close" onClick={order}> 결제 </Button>
                     </footer>
                 </section>
             ) : null }

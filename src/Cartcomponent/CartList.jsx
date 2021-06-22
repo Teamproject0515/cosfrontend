@@ -18,9 +18,8 @@ const CartList = ()=>{
 
     
     const reloadBoardList = () =>{
-        let email = sessionStorage.getItem("user");
-        console.log('dsadsa',email);
-    ApiService.showCartList(email)
+        
+    ApiService.showCartList()
         .then(res => {
             setCarts(res.data);
         })
@@ -69,15 +68,7 @@ const CartList = ()=>{
                 console.log('reloadSumMoney() Error!',err);
             })
         }
-    // const sumMoney =()=>{
-    //     let result =0;
-    //     carts.map((cart,index)=>{
-    //         console.log(cart.amount);
-    //         console.log(cart.productPrice);
-    //         result+=cart.amount*cart.productPrice;
-    //     });
-    //     setSumMoneys(result);
-    // }
+    
     return (
         <div style={{marginTop:'80px', display:'flex', justifyContent:'center',fontSize:'13px', color:'gray', minHeight:'800px'}}>
             <Grid item xs={12} style={{width:'100%', maxWidth:'1560px', minWidth:'800px'}}> 

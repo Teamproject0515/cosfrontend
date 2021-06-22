@@ -41,8 +41,9 @@ function Banner(props) {
         setState({ ...state, [anchor]: open });
     };
 
-    function selectCategoryList(value) {
+    function selectCategoryList(value,path) {
         window.localStorage.setItem("selectGender", value);
+        // props.history.push(path);
         window.location.reload();
     }
 
@@ -73,10 +74,11 @@ function Banner(props) {
         if (sessionStorage.getItem("user") != null) {
             setLoginCheck(true);
         };
-        if (sessionStorage.getItem("user_role") === 1) {
+        if (sessionStorage.getItem("user_role") == 1) {
             setManagerChk(true);
+            setLoginCheck(false);
         };
-    }, []);
+    });
 
     //loginBtn 값에 따라서 보여지는 페이지 지정
     const loginBtnHandler = () => {
@@ -86,6 +88,7 @@ function Banner(props) {
             ApiServiceLogin.lotout()
                 .then(res => {
                     sessionStorage.removeItem("user");
+                    sessionStorage.removeItem("user_role");
                     window.alert("로그아웃이 완료 되었습니다.");
                     window.location.reload();
                 })
@@ -166,7 +169,7 @@ function Banner(props) {
                         return (
                             <li key={index} className={item.cName}>
 
-                                <button style={{ border: '0px', backgroundColor: 'white' }} onClick={() => { selectCategoryList(item.value) }}>
+                                <button style={{ border: '0px', backgroundColor: 'white' }} onClick={() => { selectCategoryList(item.value, item.path) }}>
                                     <Link to={item.path} >
                                         <span>{item.title}</span>
                                     </Link>
