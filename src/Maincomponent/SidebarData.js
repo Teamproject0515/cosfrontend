@@ -1,29 +1,30 @@
 import React from "react"
 
 export const SidebarData=[
+
     {
         title:"New Arrivals",
-        path:"/new",
-        cName:"nav-text"
+        path:"/new-arrivals",
+        cName:"nav-text",
+        value:null,
     },
     {
         title:"Women",
-        path:"/women",
-        cName:"nav-text"
+        path:"/product-list",
+        cName:"nav-text",
+        value:"W",
     },
     {
         title:"Men",
-        path:"/men",
-        cName:"nav-text"
+        path:"/product-list",
+        cName:"nav-text",
+        value:"M",
     },
     {
         title:"Kids & Baby",
-        path:"/kids",
-        cName:"nav-text"
-    },
-    {
-        title:"Magazine",
-        path:"/magazine",
-        cName:"nav-text"
+        path:"/product-list",
+        cName:"nav-text",
+        value:"KIDS",
     }
+
 ]
