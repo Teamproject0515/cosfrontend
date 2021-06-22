@@ -5,11 +5,8 @@ const USER_API_BASE_URL = "http://localhost:8080/board";
 class ApiServiceChu {
 
 
-    addCart(cart){
-        return axios.post("http://localhost:8080/cart/insert",cart)
-    }
-    showCartList(email){
-        return axios.get("http://localhost:8080/cart/list/"+email)
+    showCartList(){
+        return axios.get("http://localhost:8080/cart/list/")
     }
     deleteCart(cartId){
         return axios.delete("http://localhost:8080/cart/"+cartId)
@@ -21,12 +18,12 @@ class ApiServiceChu {
         return axios.get("http://localhost:8080/cart/summoney")
     }
     
-    showAddressList(email){
-        return axios.get("http://localhost:8080/order/address/"+email)
+    showAddressList(){
+        return axios.get("http://localhost:8080/order/address/")
     }
 
-    showUserInfo(email){
-        return axios.get("http://localhost:8080/order/user/"+email)
+    showUserInfo(){
+        return axios.get("http://localhost:8080/order/user/")
     }
     
     addOrderInfo(order){
