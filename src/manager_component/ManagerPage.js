@@ -30,14 +30,14 @@ function ManagerPage(props) {
     const [orderDetail, setOrderDetail] = useState(false);
     const [cancleOrder, setCancleOrder] = useState(false);
     
-    /*  
+      
     useEffect(() => {
         let manager = sessionStorage.getItem("user_role");
         if(manager !== '1'){
             history.push('/AccessErr');
         }
     }, [])
-    */
+    
 
     //상품삭제 productDetail과 productUpdate에 넣어줌
     const productDelete = (product_id) => {

@@ -6,6 +6,7 @@ import OptionResetComponent from './OptionResetComponent';
 import PageNumComponent from './PageNumComponent';
 
 
+
 import {Table, TableCell, TableRow, Typography, InputLabel, FormControl, Grid} from '@material-ui/core';
 
 function ProductListCategoryComponent(props){
@@ -19,6 +20,8 @@ function ProductListCategoryComponent(props){
     let [total_pageNum, settotal_pageNum] = useState(1);
     let [search_keyword] = useState(null);
     let [select_option, setselect_option] = useState(window.localStorage.getItem("selectOption"));
+
+ 
 
     const ProductVO = {
         product_pageNum,

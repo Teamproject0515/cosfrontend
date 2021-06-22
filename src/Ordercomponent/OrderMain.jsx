@@ -44,8 +44,7 @@ const OrderMain=()=>{
     }
 
     const reloadAddress = () =>{
-        let email = sessionStorage.getItem("user");
-        ApiService.showAddressList(email)
+        ApiService.showAddressList()
             .then(res => {
                 setAddresses(res.data);
                 console.log('setSddresses',res.data);
@@ -56,8 +55,7 @@ const OrderMain=()=>{
     }
 
     const reloadOrderList = () =>{
-        let email = sessionStorage.getItem("user");
-        ApiService.showCartList(email)
+        ApiService.showCartList()
             .then(res => {
                 setCarts(res.data);
                 console.log('setCarts',res.data);
@@ -72,8 +70,7 @@ const OrderMain=()=>{
             })
         }
     const reloadUserInfo=()=>{
-        let email = sessionStorage.getItem("user");
-        ApiService.showUserInfo(email)
+        ApiService.showUserInfo()
             .then(res=>{
                 setUserInfo(res.data);
                 console.log('setUserInfo',res.data);
