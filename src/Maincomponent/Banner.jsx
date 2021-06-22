@@ -12,7 +12,7 @@ import Logo from "./images/cosmos.png";
 import { SidebarData } from "./SidebarData";
 import "./css/Banner.css";
 import ApiServiceLogin from "../Login/ApiServiceLogin";
-
+import ModalLoginForm from "../Login/ModalLoginForm";
 
 function Banner(props) {
 
@@ -81,13 +81,12 @@ function Banner(props) {
     //loginBtn 값에 따라서 보여지는 페이지 지정
     const loginBtnHandler = () => {
         if (loginBtn == "SignIn") {
-            history.push('/SignIn');
+            openModal();
         } else if (loginBtn == "SignOut") {
             ApiServiceLogin.lotout()
                 .then(res => {
                     sessionStorage.removeItem("user");
                     window.alert("로그아웃이 완료 되었습니다.");
-                    history.push('/');
                     window.location.reload();
                 })
                 .catch(err => {
@@ -95,6 +94,17 @@ function Banner(props) {
                 }, [loginCheck]);
         }
     }
+    //로그인 모달창 관련 
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal= () =>{
+        setModalOpen(true);
+    }
+
+    const closeModal= ()=>{
+        setModalOpen(false);
+    }
+
     const managerPage = ()=>{
         history.push('/manager');
     }
@@ -132,7 +142,7 @@ function Banner(props) {
                 <div className="right_menu">
                     {managerChk && <Button onClick={managerPage}>관리자 페이지로 가기</Button>}
                     <Button onClick={loginBtnHandler}>{loginBtn}</Button>
-
+                    <ModalLoginForm open={modalOpen} close={closeModal}></ModalLoginForm> 
                     {loginCheck && <IconButton style={{ fontSize: '14px' }} onClick={selectMyCos}> MY COS </IconButton>}
 
                     <IconButton>
