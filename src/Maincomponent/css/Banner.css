@@ -15,9 +15,9 @@ body{
     float: left;
 }
 .mid_menu{
-    float: left;
+    float: right;
     position:relative;
-    left:0.4%;
+    left:-49%;
 }
 .right_menu{
     float: right;
